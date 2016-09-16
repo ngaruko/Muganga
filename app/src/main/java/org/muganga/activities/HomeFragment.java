@@ -274,7 +274,14 @@ public class HomeFragment extends Fragment implements GoogleApiClient.Connection
                 String phoneNumber="0212176188";
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + phoneNumber));
                 intent.putExtra("sms_body", "We need some help");
-                startActivity(intent);
+                //startActivity(intent);
+
+                //choose how to share ....will display all apps with action_send
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+                sendIntent.setType("text/plain");
+                startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
 
                 break;
             case R.id.email_button:
