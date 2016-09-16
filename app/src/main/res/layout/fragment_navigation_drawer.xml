@@ -1,0 +1,42 @@
+<!--<org.lucasr.dspec.DesignSpecFrameLayout--><!--android:layout_height="match_parent"--><!--android:layout_width="match_parent"--><!--xmlns:android="http://schemas.android.com/apk/res/android"--><!--app:designSpec="@raw/dspec"--><!--xmlns:app="http://schemas.android.com/apk/res-auto"--><!-->-->
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    android:orientation="vertical"
+    tools:context="org.muganga.NavigationDrawerFragment">
+
+    <LinearLayout
+        android:id="@+id/signing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primaryColorDark">
+
+
+        <TextView
+            android:id="@+id/sign_status"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:initialLayout="@layout/appwidget"
+
+    android:minHeight="150dp"
+
+    android:minWidth="280dp"
+    android:previewImage="@drawable/btn_google_signin_normal"
+
+    >
+
+</appwidget-provider>
