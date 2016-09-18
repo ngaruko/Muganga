@@ -353,7 +353,7 @@ public class MoviePosterFragment extends Fragment implements LoaderManager.Loade
 
         mCursor = cursor;
         if (mCursor != null && !mCursor.moveToFirst()) {
-            Log.e(TAG, "Error reading item detail cursor");
+            Log.d(TAG, "Error reading item detail cursor");
             mCursor.close();
             mCursor = null;
         }

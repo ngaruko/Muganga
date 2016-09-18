@@ -62,7 +62,7 @@ public class JSonParser {
             return Double.parseDouble(rating);
         } catch (NumberFormatException e) {
             // e.printStackTrace();
-            Log.e("NumberFormatException", e.getMessage());
+            Log.d("NumberFormatException", e.getMessage());
         }
         return -1.0;
     }
@@ -76,20 +76,20 @@ public class JSonParser {
 
             try {
                 JSONObject body = (JSONObject) response.get(0);
-                //Log.e(" RESPONSE BODY", String.valueOf(body.length()));
+                //Log.d(" RESPONSE BODY", String.valueOf(body.length()));
                     try {
 
 
                         JSONArray movies = null;
                         if (body.has(KEY_MOVIES)) {
-                            Log.e(" RESPONSE BODY", String.valueOf(body.length()));
+                            Log.d(" RESPONSE BODY", String.valueOf(body.length()));
                             movies = body.getJSONArray(KEY_MOVIES);
                         } else {
                             movies = response;
                         }
 
 
-                        // Log.e("Movies ", String.valueOf(movies.length()));
+                        // Log.d("Movies ", String.valueOf(movies.length()));
                         assert movies != null;
                         for (int i = 0; i < movies.length(); i++) {
                             currentMovie = movies.getJSONObject(i);
@@ -126,7 +126,7 @@ public class JSonParser {
                                 try {
                                     runtime = currentMovie.getJSONArray(KEY_RUNTIME).get(0).toString();
                                 } catch (JSONException e) {
-                                    Log.e("Parse error", e.getMessage());
+                                    Log.d("Parse error", e.getMessage());
                                 }
                             }
                             if (currentMovie.has(KEY_GENRES) && !currentMovie.isNull(KEY_GENRES)) {
@@ -162,7 +162,7 @@ public class JSonParser {
                                 ratingString = currentMovie.getString(KEY_RATINGS);
                             }
                             rating = getRating(ratingString);
-                            Log.e("ratings ", Double.toString(rating));
+                            Log.d("ratings ", Double.toString(rating));
 
 
                             //INSERT THIS TO DB
@@ -187,7 +187,7 @@ public class JSonParser {
                         }
                         context.getContentResolver().applyBatch(CONTENT_AUTHORITY, cpo);
                     } catch (JSONException | RemoteException | OperationApplicationException e) {
-                        Log.e("Error updating content.", "Error updating content.", e);
+                        Log.d("Error updating content.", "Error updating content.", e);
                     }
 
 
@@ -202,6 +202,7 @@ public class JSonParser {
 
     public void parseAndSaveTheatersMovies(ArrayList<ContentProviderOperation> cpo, Uri uri, JSONObject response, String filter) {
 
+        //for now ignore filter===just look for theaters
         if (response != null && response.length() > 0) {
 
          //   JSONObject data;
@@ -212,7 +213,7 @@ public class JSonParser {
 
 
 
-            //Log.e(" RESPONSE BODY", String.valueOf(body.length()));
+            //Log.d(" RESPONSE BODY", String.valueOf(body.length()));
             try {
                 JSONArray intheaters;
 
@@ -221,13 +222,13 @@ public class JSonParser {
                 JSONObject data;
                 if (response.has("data")) {
                     data=response.getJSONObject("data");
-                    intheaters = data.getJSONArray(filter);
+                    intheaters = data.getJSONArray("inTheaters");
                     for (int j = 0; j < intheaters.length(); j++) {
                   movies=((JSONObject)intheaters.get(j)).getJSONArray(KEY_MOVIES);}
                 }
 
 
-                Log.e("Movies ", String.valueOf(movies.length()));
+                Log.d("Movies ", String.valueOf(movies.length()));
                 for (int i = 0; i < movies.length(); i++) {
 
                     //Initialise all the fields
@@ -242,7 +243,7 @@ public class JSonParser {
                     String runtime = Constants.NA;
                     String plot = Constants.NA;
                     String genres = "";
-                    String tthumbnailUrl = Constants.NA;
+                    String thumbnailUrl = Constants.NA;
 
                     JSONObject currentMovie = movies.getJSONObject(i);
                     if (currentMovie.has(KEY_ID) && !currentMovie.isNull(KEY_ID)) {
@@ -261,7 +262,7 @@ public class JSonParser {
                         try {
                             runtime = currentMovie.getJSONArray(KEY_RUNTIME).get(0).toString();
                         } catch (JSONException e) {
-                            Log.e("Parse error", e.getMessage());
+                            Log.d("Parse error", e.getMessage());
                         }
                     }
                     if (currentMovie.has(KEY_GENRES) && !currentMovie.isNull(KEY_GENRES)) {
@@ -297,7 +298,7 @@ public class JSonParser {
                         ratingString = currentMovie.getString(KEY_RATINGS);
                     }
                     rating = getRating(ratingString);
-                    Log.e("ratings ", Double.toString(rating));
+
 
 
                     //INSERT THIS TO DB
@@ -322,7 +323,7 @@ public class JSonParser {
                 }
                 context.getContentResolver().applyBatch(CONTENT_AUTHORITY, cpo);
             } catch (JSONException | RemoteException | OperationApplicationException e) {
-                Log.e("Error updating content.", "Error updating content.", e);
+                Log.d("Error updating content.", "Error updating content.", e);
             }
             //}
 

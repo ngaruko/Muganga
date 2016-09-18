@@ -37,7 +37,7 @@ public class Requestor {
             try {
                 response = requestFuture.get(30000, TimeUnit.MILLISECONDS);
             } catch (InterruptedException | ExecutionException | TimeoutException e) {
-                Log.e(e.getMessage() , "");
+                Log.d(e.getMessage() , "");
             }
             return response;
 
@@ -61,7 +61,7 @@ public class Requestor {
         try {
             response = requestFuture.get(30000, TimeUnit.MILLISECONDS);
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
-            Log.e(e.getMessage() , "");
+            Log.d(e.getMessage() , "");
         }
         return response;
     }

@@ -2,35 +2,27 @@ package org.muganga.activities;
 
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.Scope;
-import com.google.android.gms.plus.Plus;
-import com.google.android.gms.plus.model.people.Person;
 
+import org.muganga.Logs.Logger;
 import org.muganga.R;
 
 /**
  * This is the home fragment. Need to think of contents.
  */
-public class HomeFragment extends Fragment implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
+public class HomeFragment extends Fragment implements View.OnClickListener {
     public static final int STATE_SIGNED_IN = 0;
     public static final int STATE_SIGN_IN = 1;
     // TODO: Rename parameter arguments, choose names that match
@@ -56,7 +48,7 @@ public class HomeFragment extends Fragment implements GoogleApiClient.Connection
     private Button mSignOutButton;
     private Button mRevokeButton;
     private TextView mStatus;
-    private GoogleApiClient mGoogleApiClient;
+
 
 
     public HomeFragment() {
@@ -87,7 +79,6 @@ public class HomeFragment extends Fragment implements GoogleApiClient.Connection
         mSignOutButton.setOnClickListener(this);
         mRevokeButton.setOnClickListener(this);
 
-        mGoogleApiClient = buildApiClient();
 
         setHasOptionsMenu(false);
 
@@ -117,127 +108,27 @@ public class HomeFragment extends Fragment implements GoogleApiClient.Connection
         return layout;
     }
 
-    public GoogleApiClient buildApiClient() {
-        return new GoogleApiClient.Builder(getActivity())
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(Plus.API, Plus.PlusOptions.builder().build())
-                .addScope(new Scope(Scopes.PROFILE))
-                .build();
-    }
+
 
     @Override
     public void onStart() {
         super.onStart();
-        mGoogleApiClient.connect();
+
     }
 
     @Override
     public void onStop() {
         super.onStop();
 
-        if (mGoogleApiClient.isConnected()) {
-            mGoogleApiClient.disconnect();
-        }
-    }
-
-    @Override
-    public void onConnectionSuspended(int cause) {
-
-        mGoogleApiClient.connect();
-    }
-
-    @Override
-    public void onConnected(Bundle connectionHint) {
-        // Reaching onConnected means we consider the user signed in.
-        Log.i(TAG, "onConnected");
-
-        // Update the user interface to reflect that the user is signed in.
-        mSignInButton.setEnabled(false);
-        mSignOutButton.setEnabled(true);
-        mRevokeButton.setEnabled(true);
-        setSignedIn(true);
-        // Indicate that the sign in process is complete.
-        mSignInProgress = STATE_SIGNED_IN;
-
-
-        Person currentUser = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
-
-        //Todo: Look for the bug
-        mStatus.setText(String.format("Signed In to G+ as %s", currentUser != null ? currentUser.getDisplayName() : "User"));
-
 
     }
 
-    @Override
-    public void onConnectionFailed(ConnectionResult result) {
-
-        Log.i(TAG, "onConnectionFailed: ConnectionResult.getErrorCode() = "
-                + result.getErrorCode());
-
-        if (mSignInProgress != STATE_IN_PROGRESS) {
-            // We do not have an intent in progress so we should store the latest
-            // error resolution intent for use when the sign in button is clicked.
-            mSignInIntent = result.getResolution();
-            mSignInError = result.getErrorCode();
-
-            if (mSignInProgress == STATE_SIGN_IN) {
-
-                resolveSignInError();
-            }
-        }
-
-        // In this sample we consider the user signed out whenever they do not have
-        // a connection to Google Play services.
-        onSignedOut();
-    }
-
-    public void resolveSignInError() {
-        if (mSignInIntent != null) {
 
 
-            try {
 
-                mSignInProgress = STATE_IN_PROGRESS;
-                getActivity().startIntentSenderForResult(mSignInIntent.getIntentSender(),
 
-                        RC_SIGN_IN, null, 0, 0, 0);
-            } catch (IntentSender.SendIntentException e) {
-                Log.i(TAG, "Sign in intent could not be sent: "
-                        + e.getLocalizedMessage());
-                // The intent was canceled before it was sent.  Attempt to connect to
-                // get an updated ConnectionResult.
-                mSignInProgress = STATE_SIGN_IN;
-                mGoogleApiClient.connect();
-            }
-        } else {
 
-            getActivity().showDialog(DIALOG_PLAY_SERVICES_ERROR);
-        }
-    }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode,
-                                 Intent data) {
-
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case RC_SIGN_IN:
-                if (resultCode == RESULT_OK) {
-
-                    mSignInProgress = STATE_SIGN_IN;
-                } else {
-
-                    mSignInProgress = STATE_SIGNED_IN;
-                }
-
-                if (!mGoogleApiClient.isConnecting()) {
-
-                    mGoogleApiClient.connect();
-                }
-                break;
-        }
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -287,7 +178,7 @@ public class HomeFragment extends Fragment implements GoogleApiClient.Connection
             case R.id.email_button:
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
                 emailIntent.setType("text/html");
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, "emailaddress@emailaddress.com");
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, "info@muganga.org");
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
                 emailIntent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
                 emailIntent.setType("text/plain");
@@ -302,37 +193,46 @@ public class HomeFragment extends Fragment implements GoogleApiClient.Connection
                 break;
             case R.id.find_button:
 
-                Toast.makeText(getContext(), "Finding", Toast.LENGTH_LONG).show();
+                Intent findIntent = new Intent(getContext(), FindActivity.class);
+                startActivity(findIntent);
                 break;
-            case R.id.ask_button:
 
-                Toast.makeText(getContext(), "Asking", Toast.LENGTH_LONG).show();
+            case R.id.ask_button:
+                //Open firebase activity...
+                Logger.longToast("Calling Firebase----");
+                Intent firebaseIntent = new Intent(getContext(), FirebaseActivity.class);
+                startActivity(firebaseIntent);
+               // Toast.makeText(getContext(), "Asking", Toast.LENGTH_LONG).show();
                 break;
         }
 
-        if (!mGoogleApiClient.isConnecting()) {
+
 
             switch (v.getId()) {
                 case R.id.sign_in_button:
                     mStatus.setText("Signing In");
-                    resolveSignInError();
+                    Intent firebaseIntent = new Intent(getContext(), FirebaseActivity.class);
+                    startActivity(firebaseIntent);
                     break;
                 case R.id.sign_out_button:
 
-                    Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
-                    mGoogleApiClient.disconnect();
-                    mGoogleApiClient.connect();
+
                     break;
                 case R.id.revoke_access_button:
 
-                    Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
+                    //Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
 
-                    Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient);
-                    mGoogleApiClient = buildApiClient();
-                    mGoogleApiClient.connect();
+                   // Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient);
+                   //mGoogleApiClient = buildApiClient();
+                    //mGoogleApiClient.connect();
+
+                    //Open firebase activity...
+                    Logger.longToast("Calling Firebase----");
+                    Intent intent = new Intent(getContext(), FirebaseActivity.class);
+                    startActivity(intent);
                     break;
             }
-        }
+
     }
 
     public boolean isSignedIn() {

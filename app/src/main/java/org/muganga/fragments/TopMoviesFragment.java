@@ -92,7 +92,7 @@ public class TopMoviesFragment extends Fragment implements LoaderManager.LoaderC
     public void onLoadFinished(android.content.Loader<Cursor> loader, Cursor cursor) {
 
         if (isAdded()) {
-            Log.e("Loading....", "Top movies!");
+            Log.d("Loading....", "Top movies!");
             AdapterTopMovies adapter = new AdapterTopMovies(cursor, getActivity());
             adapter.setHasStableIds(true);
             try {

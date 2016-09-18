@@ -19,7 +19,7 @@ public class WidgetProvider extends AppWidgetProvider {
 
 
         context.startService(new Intent(context, WidgetIntentService.class));
-        Log.e("Update", "update");
+        Log.d("Update", "update");
     }
 
     @Override
@@ -27,7 +27,7 @@ public class WidgetProvider extends AppWidgetProvider {
                                           int appWidgetId, Bundle newOptions) {
         context.startService(new Intent(context, WidgetIntentService.class));
 
-        Log.e("OptionsChanged", "onAppWidgetOptionsChanged");
+        Log.d("OptionsChanged", "onAppWidgetOptionsChanged");
     }
 
 
@@ -35,7 +35,7 @@ public class WidgetProvider extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
         LogHelper.log("onReceive action=" + action);
-        Log.e("OnReceive action", action);
+        Log.d("OnReceive action", action);
         updateDatabase(context);
         super.onReceive(context, intent);
         context.startService(new Intent(context, WidgetIntentService.class));
@@ -49,7 +49,7 @@ public class WidgetProvider extends AppWidgetProvider {
         Intent service_start = new Intent(context, MoviesService.class);
         context.startService(service_start);
 
-        Log.e("Updating Db", "db");
+        Log.d("Updating Db", "db");
     }
 
 

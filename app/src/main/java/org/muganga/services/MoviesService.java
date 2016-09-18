@@ -89,14 +89,15 @@ public class MoviesService extends IntentService {
             comingSoonResponse = Requestor.requestMoviesJSON(requestQueue, EndPoints.getRequestUrlComingSoon());
             topMoviesResponse = Requestor.requestMoviesJSON(requestQueue, EndPoints.getRequestUrlTopMovies());
             bottomMoviesResponse = Requestor.requestMoviesJSON(requestQueue, EndPoints.getRequestUrlBottomMovies());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
 
         new JSonParser(this).parseAndSaveTheatersMovies(cpoTheaters, theatersUri, theatersResponse,"inTheaters");
-        new JSonParser(this).parseAndSaveTheatersMovies(cpoComing, comingSoonUri, comingSoonResponse,"comingSoon");
-        new JSonParser(this).parseAndSaveTheatersMovies(cpoTop, topMoviesUri, topMoviesResponse,"top");
+       new JSonParser(this).parseAndSaveTheatersMovies(cpoComing, comingSoonUri, comingSoonResponse,"comingSoon");
+       new JSonParser(this).parseAndSaveTheatersMovies(cpoTop, topMoviesUri, topMoviesResponse,"top");
         new JSonParser(this).parseAndSaveTheatersMovies(cpoBottom, bottomMoviesUri, bottomMoviesResponse,"bottom");
 
 

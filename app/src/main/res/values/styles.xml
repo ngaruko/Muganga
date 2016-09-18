@@ -20,7 +20,6 @@
         <item name="android:textColorSecondary">#00F</item>
 
 
-
     </style>
 
     <!-- main activity toolbar style -->
@@ -28,5 +27,9 @@
         <item name="android:background">?attr/colorPrimary</item>
         <item name="popupTheme">@style/Theme.AppCompat.Light</item>
     </style>
+
+    <style name="AppTheme.Base.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.Base.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

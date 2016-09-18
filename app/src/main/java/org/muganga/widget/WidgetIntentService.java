@@ -106,7 +106,7 @@ public class WidgetIntentService extends IntentService {
             return;
         } else if (data.getCount() < 1) {
             data.close();
-            Log.e("Data Empty", "No data");
+            Log.d("Data Empty", "No data");
 
         } else if (data.moveToFirst()) {
 
@@ -178,9 +178,9 @@ public class WidgetIntentService extends IntentService {
         mMovie.setRated(mRated);
 
 
-        Log.e("genre", mGenres);
-//        Log.e("trailer", mVideoUrl);
-        Log.e("Plot", mMovie.getPlot());
+        Log.d("genre", mGenres);
+//        Log.d("trailer", mVideoUrl);
+        Log.d("Plot", mMovie.getPlot());
 
 
         //startActivity(new Intent(this, DestinationActivity.class).putExtras(b));

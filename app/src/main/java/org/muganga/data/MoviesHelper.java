@@ -45,14 +45,14 @@ public class MoviesHelper extends SQLiteOpenHelper {
             db.execSQL("CREATE TABLE " + MoviesProvider.Tables.FOUND_MOVIES + TABLE_CREATOR);
 
         } catch (SQLiteException exception) {
-            Log.e("OnCreate Error", exception + "");
+            Log.d("OnCreate Error", exception + "");
         }
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         try {
-            Log.e("On Upgrade", "upgrade table executed");
+            Log.d("On Upgrade", "upgrade table executed");
 
             db.execSQL("DROP TABLE IF EXISTS " + MoviesProvider.Tables.IN_THEATERS);
             db.execSQL("DROP TABLE IF EXISTS " + MoviesProvider.Tables.COMING_SOON);
@@ -61,7 +61,7 @@ public class MoviesHelper extends SQLiteOpenHelper {
             db.execSQL("DROP TABLE IF EXISTS " + MoviesProvider.Tables.BOTTOM_MOVIES);
             onCreate(db);
         } catch (SQLiteException exception) {
-            Log.e("SQL Update Error", exception + "");
+            Log.d("SQL Update Error", exception + "");
         }
     }
 }

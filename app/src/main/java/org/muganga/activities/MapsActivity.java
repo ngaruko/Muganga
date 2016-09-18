@@ -1,5 +1,6 @@
 package org.muganga.activities;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
@@ -11,6 +12,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.muganga.R;
+import org.muganga.utilities.LocationHelper;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -45,11 +47,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        Location location= LocationHelper.getLastKnownLocation(this);
+        LatLng here=new LatLng(location.getLatitude(), location.getLongitude());
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        mMap.addMarker(new MarkerOptions().position(here).title("You are here"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(here));
     }
 
    /* private void setUpMapIfNeeded() {

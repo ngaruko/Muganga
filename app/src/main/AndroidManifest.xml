@@ -11,12 +11,8 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
-    <uses-permission android:name="com.example.maptest.permission.MAPS_RECEIVE"/>
-
+    <uses-permission android:name="com.example.maptest.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_MMS" />
@@ -28,15 +24,18 @@
          location permissions for the 'MyLocation' functionality. 
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
-        android:name="org.muganga.MainApplication"
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme.Base">
         <activity
-            android:name="org.muganga.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,11 +45,11 @@
         </activity>
 
         <service
-            android:name="org.muganga.services.MoviesService"
+            android:name=".services.MoviesService"
             android:exported="false" />
 
         <provider
-            android:name="org.muganga.data.MoviesProvider"
+            android:name=".data.MoviesProvider"
             android:authorities="org.muganga"
             android:exported="false" />
 
@@ -66,7 +65,7 @@
             android:theme="@android:style/Theme.Translucent" />
 
         <receiver
-            android:name="org.muganga.widget.WidgetProvider"
+            android:name=".widget.WidgetProvider"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -77,12 +76,12 @@
                 android:resource="@xml/widget_provider" />
         </receiver>
 
-        <service android:name="org.muganga.widget.WidgetIntentService"></service>
+        <service android:name=".widget.WidgetIntentService" />
 
         <activity
-            android:name="org.muganga.activities.MoviePosterActivity"
+            android:name=".activities.MoviePosterActivity"
             android:label="@string/title_activity_movie_detail"
-            android:parentActivityName="org.muganga.MainActivity">
+            android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -96,25 +95,25 @@
                 android:value="org.muganga.MainActivity" />
         </activity>
         <activity
-            android:name="org.muganga.activities.SettingsActivity"
+            android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName="org.muganga.MainActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.muganga.MainActivity" />
         </activity>
         <activity
-            android:name="org.muganga.activities.MovieSearchActivity"
+            android:name=".activities.MovieSearchActivity"
             android:label="@string/title_activity_movie_search">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.muganga.MainActivity" />
         </activity>
         <activity
-            android:name="org.muganga.utilities.DialogClass"
+            android:name=".utilities.DialogClass"
             android:theme="@android:style/Theme.Translucent" />
         <activity
-            android:name="org.muganga.activities.DetailActivity"
+            android:name=".activities.DetailActivity"
             android:label="@string/title_movie_detail">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -129,7 +128,6 @@
                 android:value="org.muganga.activities.MoviePosterActivity" />
         </activity>
 
-
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -142,13 +140,49 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <!--  Add Google Map Library -->
+        <!-- Add Google Map Library -->
         <uses-library android:name="com.google.android.maps" />
-        <activity
-            android:name="org.muganga.activities.MapsActivity"
-            android:label="@string/title_activity_maps">
 
-        </activity>
+        <activity
+            android:name=".activities.MapsActivity"
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".activities.UserLocationActivity"
+            android:label="@string/title_activity_user_location"
+            android:theme="@style/AppTheme.Base" />
+
+        <service
+            android:name=".services.FetchAddressIntentService"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.FindActivity"
+            android:label="@string/title_activity_find"
+            android:theme="@style/AppTheme.Base" />
+        <activity
+            android:name=".activities.FirebaseActivity"
+            android:label="@string/title_activity_firebase"
+            android:theme="@style/AppTheme.Base" />
+        <activity
+            android:name=".activities.SignInActivity"
+            android:label="@string/title_activity_sign_in"/>
+
+
+        <service
+            android:name=".services.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".services.MyFirebaseInstanceIdService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

@@ -74,7 +74,7 @@ public class TrailerParser {
             try {
 
                 JSONObject currentMovie = (JSONObject) response;//.get(0);
-                Log.e(" RESPONSE BODY", String.valueOf(currentMovie.length()));
+                Log.d(" RESPONSE BODY", String.valueOf(currentMovie.length()));
                 if (currentMovie.has(KEY_ID) && !currentMovie.isNull(KEY_ID)) {
                     id = currentMovie.getString(KEY_ID);
                 }
@@ -90,7 +90,7 @@ public class TrailerParser {
                     try {
                         runtime = currentMovie.getJSONArray(KEY_RUNTIME).get(0).toString();
                     } catch (JSONException e) {
-                        Log.e("Parse error", e.getMessage());
+                        Log.d("Parse error", e.getMessage());
                     }
                 }
                 if (currentMovie.has(KEY_GENRES) && !currentMovie.isNull(KEY_GENRES)) {
@@ -136,7 +136,7 @@ public class TrailerParser {
                     ratingString = currentMovie.getString(KEY_RATINGS);
                 }
                 rating = getRating(ratingString);
-                Log.e("ratings ", Double.toString(rating));
+                Log.d("ratings ", Double.toString(rating));
 
 
                 //make movie object
@@ -176,7 +176,7 @@ public class TrailerParser {
             return Double.parseDouble(rating);
         } catch (NumberFormatException e) {
             // e.printStackTrace();
-            Log.e("NumberFormatException", e.getMessage());
+            Log.d("NumberFormatException", e.getMessage());
         }
         return -1.0;
     }

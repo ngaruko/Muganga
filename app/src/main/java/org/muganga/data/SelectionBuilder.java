@@ -170,7 +170,7 @@ public class SelectionBuilder {
                         String having, String orderBy, String limit) {
         assertTable();
         if (columns != null) mapColumns(columns);
-        Log.e("DB", String.valueOf(db));
+        Log.d("DB", String.valueOf(db));
         return db.query(mTable, columns, getSelection(), getSelectionArgs(), groupBy, having,
                 orderBy, limit);
     }

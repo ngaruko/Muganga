@@ -81,7 +81,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
 //        if (getIntent() != null && getIntent().hasExtra("movie")) {
         mMovie = getIntent().getExtras().getParcelable("movie");
-        Log.e("Received in extar", mMovie.getPlot());
+        Log.d("Received in extar", mMovie.getPlot());
         if (mMovie != null) {
             //mTitleId = mMovie.getTitle();
             mTitle = mMovie != null ? mMovie.getTitle() : null;
@@ -147,7 +147,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         );
 
 
-        Log.e("Plot", mPlot);
+        Log.d("Plot", mPlot);
         bodyView.setText(Html.fromHtml(mPlot));
 
 
@@ -237,10 +237,10 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                             mVideoUrl = movie.getTrailerUrl();
 
 
-                            Log.e("Trailer", mVideoUrl);
+                            Log.d("Trailer", mVideoUrl);
 
-                            Log.e("Clikced", "Trailer coming");
-                            Log.e("URL", mVideoUrl);
+                            Log.d("Clikced", "Trailer coming");
+                            Log.d("URL", mVideoUrl);
 
 
                             if (mVideoUrl != null && !mVideoUrl.equals(Constants.NA) && !mVideoUrl.isEmpty()) {

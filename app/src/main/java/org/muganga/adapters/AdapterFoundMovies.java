@@ -106,11 +106,11 @@ public class AdapterFoundMovies extends RecyclerView.Adapter<AdapterFoundMovies.
 
 
                                         } catch (Exception e) {
-                                            Log.e("Intent Error", e.getMessage());
+                                            Log.d("Intent Error", e.getMessage());
                                         }
 
 
-                                        Log.e("position", String.valueOf(getItemId(vh.getAdapterPosition())));
+                                        Log.d("position", String.valueOf(getItemId(vh.getAdapterPosition())));
                                     }
                                 }
 

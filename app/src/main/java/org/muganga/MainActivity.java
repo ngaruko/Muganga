@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
 // Call the service to get all movies
-        startService(new Intent(this, MoviesService.class));
+      startService(new Intent(this, MoviesService.class));
 
 
 
@@ -252,7 +252,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.refresh:
                     try {
                         ((SortListener) fragment).onRefresh();
-                        Log.e("rfress", "refereshin");
+                        Log.d("rfress", "refereshin");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -261,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.action_sort_title:
                     try {
-                        Log.e("title", "tile");
+                        Log.d("title", "tile");
                         ((SortListener) fragment).onSortTitle();
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.action_sort_date:
                     try {
-                        Log.e("date", "date");
+                        Log.d("date", "date");
                         ((SortListener) fragment).onSortByDate();
 
                     } catch (Exception e) {
@@ -282,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.action_sort_rating:
                     try {
-                        Log.e("rating", "rating");
+                        Log.d("rating", "rating");
                         ((SortListener) fragment).onSortByRating();
 
                     } catch (Exception e) {
