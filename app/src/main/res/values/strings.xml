@@ -19,10 +19,9 @@
     <!--FOR TABS-->
     <string-array name="tabs">
         <item> Home</item>
-        <item> In Theaters</item>
-        <item> Top Movies</item>
-        <item> Coming Soon</item>
-        <item>Bottom Movies </item>
+        <item> Ask </item>
+        <item> Find</item>
+        <item> Contact</item>
     </string-array>
 
     <!--FOR DRAWER-->
@@ -42,7 +41,7 @@
 
     <string name="title_activity_vector_drawable">VectorDrawableActivity</string>
     <string name="new_release_fragment_text">This is the New Release fragment</string>
-    <string name="loading">Loading Awesomeness…</string>
+    <string name="loading">Loading Awesomeness�</string>
 
 
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
@@ -55,8 +54,8 @@
 
 
     <string name="about">About this App</string>
-    <string name="about_text">This application gets movie information from a "Myfilms" API. Movies are classified as Top, Bottom, in theatres and Coming soon. Upon launching the app, the app displays the Movies screen with “intheaters”
-movies. Tabs allow for other movies’ option selection.
+    <string name="about_text">This application gets movie information from a "Myfilms" API. Movies are classified as Top, Bottom, in theatres and Coming soon. Upon launching the app, the app displays the Movies screen with �intheaters�
+movies. Tabs allow for other movies� option selection.
 When a user selects a movie, he is given options to watch the trailer (if signed in or prompted to sign in), to see full synopsis or view full movie  (of course this feature is not fully implemented, there are copy rights involved that the app developer needs to have for this to work.). </string>
 
 
@@ -71,7 +70,7 @@ When a user selects a movie, he is given options to watch the trailer (if signed
     <string name="full_synopsis">Full Synopsis</string>
     <string name="view_trailer">View Trailer</string>
     <string name="title_activity_video_player">VideoPlayerActivity</string>
-    <string name="action_search">Search Movie</string>
+    <string name="action_search">Doctors, hospitals, pharmacies and more</string>
     <string name="title_activity_movie_search">Movie Search</string>
     <string name="action_sort_rating">Sort by rating</string>
     <string name="sign_out">Sign Out</string>
@@ -85,7 +84,7 @@ When a user selects a movie, he is given options to watch the trailer (if signed
     <string name="movie_thumbnail">Movie Thumbnail</string>
     <string name="rating_bar">Rating bar</string>
     <string name="release_date_text">Release date</string>
-    <string name="loading_movie">Loading Movies…</string>
+    <string name="loading_movie">Loading Movies�</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -138,4 +137,5 @@ When a user selects a movie, he is given options to watch the trailer (if signed
     <string name="invitation_title">Invitation title</string>
     <string name="invitation_message">Invitation message</string>
     <string name="invitation_cta">Invitation cta</string>
+    <string name="title_activity_locations">LocationsActivity</string>
 </resources>

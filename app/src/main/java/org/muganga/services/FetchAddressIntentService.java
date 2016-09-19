@@ -1,7 +1,6 @@
 package org.muganga.services;
 
 import android.app.IntentService;
-import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -27,14 +26,7 @@ import java.util.Locale;
  * helper methods.
  */
 public class FetchAddressIntentService extends IntentService {
-    // TODO: Rename actions, choose action names that describe tasks that this
-    // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
-    private static final String ACTION_FOO = "org.muganga.services.action.FOO";
-    private static final String ACTION_BAZ = "org.muganga.services.action.BAZ";
 
-    // TODO: Rename parameters
-    private static final String EXTRA_PARAM1 = "org.muganga.services.extra.PARAM1";
-    private static final String EXTRA_PARAM2 = "org.muganga.services.extra.PARAM2";
     private static final String TAG ="Error" ;
     protected ResultReceiver mReceiver;
     private List<Address> mAddresses;
@@ -46,44 +38,13 @@ public class FetchAddressIntentService extends IntentService {
         super("FetchAddressIntentService");
     }
 
-    /**
-     * Starts this service to perform action Foo with the given parameters. If
-     * the service is already performing a task this action will be queued.
-     *
-     * @see IntentService
-     */
-    // TODO: Customize helper method
-    public static void startActionFoo(Context context, String param1, String param2) {
-        Intent intent = new Intent(context, FetchAddressIntentService.class);
-        intent.setAction(ACTION_FOO);
-        intent.putExtra(EXTRA_PARAM1, param1);
-        intent.putExtra(EXTRA_PARAM2, param2);
-        context.startService(intent);
-    }
-
-    /**
-     * Starts this service to perform action Baz with the given parameters. If
-     * the service is already performing a task this action will be queued.
-     *
-     * @see IntentService
-     */
-    // TODO: Customize helper method
-    public static void startActionBaz(Context context, String param1, String param2) {
-        Intent intent = new Intent(context, FetchAddressIntentService.class);
-        intent.setAction(ACTION_BAZ);
-        intent.putExtra(EXTRA_PARAM1, param1);
-        intent.putExtra(EXTRA_PARAM2, param2);
-        context.startService(intent);
-    }
 
     @Override
     protected void onHandleIntent(Intent intent) {
 
          mGeocoder=new Geocoder(this, Locale.getDefault());
 
-//mGeocoder.getFromLocationName("auckland",5,)
-
-       mAddresses = null;
+ mAddresses = null;
         //lets try some known name of a place
 
         if (intent != null) {

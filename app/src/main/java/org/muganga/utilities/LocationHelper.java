@@ -19,8 +19,10 @@ import org.muganga.models.UserEvent;
  */
 public class LocationHelper {
     private static final int ONE_KILOMETER = 1000;
-    private static String bestProvider;
+    public static String bestProvider;
     private static Context context;
+    //  private static context mContext=MainApplication.getAppContext();
+    private static Criteria mCriteria ;
 
     public static boolean eventIsInRange(Activity activity, UserEvent event) {
         return eventIsInRange(event, getLastKnownLocation(activity));
@@ -43,10 +45,10 @@ public class LocationHelper {
     }
 
     public static Location getLastKnownLocation(Activity activity) {
-        Criteria criteria = new Criteria();
-         context = MainApplication.getAppContext();
-        criteria.setAccuracy(Criteria.ACCURACY_COARSE);
-        bestProvider = getLocationManager(activity).getBestProvider(criteria, true);
+        mCriteria = new Criteria();
+        context = MainApplication.getAppContext();
+        mCriteria.setAccuracy(Criteria.ACCURACY_COARSE);
+        bestProvider = getLocationManager(activity).getBestProvider(mCriteria, true);
 
 
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -65,8 +67,8 @@ public class LocationHelper {
 
     public static void updateLocation(Activity activity, LocationListener locationListener) {
 
-        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -78,5 +80,9 @@ public class LocationHelper {
         }
         getLocationManager(activity).requestLocationUpdates(bestProvider, 400, 1, locationListener);
 
+    }
+
+    public static String getBestProvider(Activity activity) {
+        return getLocationManager(activity).getBestProvider(mCriteria, true);
     }
 }

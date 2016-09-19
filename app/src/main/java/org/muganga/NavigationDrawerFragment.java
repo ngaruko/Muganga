@@ -80,8 +80,10 @@ public class NavigationDrawerFragment extends Fragment {
 
         adapter = new DrawerAdapter(getActivity(), getData());
 
-        recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recycleView.setAdapter(adapter);
+
+
 
         return layout;
     }
@@ -111,7 +113,9 @@ public class NavigationDrawerFragment extends Fragment {
 
     public void setUp(int fragmentId, DrawerLayout drawerLayout, final Toolbar toolbar) {
 
-        containerView = getView().findViewById(fragmentId);
+
+            containerView = getView().findViewById(fragmentId);
+
 
         mDrawerLayout = drawerLayout;
         mDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
@@ -153,7 +157,7 @@ public class NavigationDrawerFragment extends Fragment {
 
         }
 
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
 
         mDrawerLayout.post(new Runnable() {
             @Override

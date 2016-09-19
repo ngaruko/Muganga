@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.android.gms.common.SignInButton;
 
 import org.muganga.Logs.Logger;
@@ -101,9 +99,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         mTextButton.setOnClickListener(this);
 
         //code for the ad banner
-        AdView mAdView = (AdView) layout.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+     //   AdView mAdView = (AdView) layout.findViewById(R.id.adView);
+    //    AdRequest adRequest = new AdRequest.Builder().build();
+    //    mAdView.loadAd(adRequest);
 
         return layout;
     }
@@ -193,7 +191,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.find_button:
 
-                Intent findIntent = new Intent(getContext(), FindActivity.class);
+                Intent findIntent = new Intent(getContext(), LocationsActivity.class);
                 startActivity(findIntent);
                 break;
 

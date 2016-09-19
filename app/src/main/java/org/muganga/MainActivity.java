@@ -25,10 +25,9 @@ import android.widget.Toast;
 
 import org.muganga.activities.HomeFragment;
 import org.muganga.activities.MovieSearchActivity;
-import org.muganga.fragments.BottomMoviesFragment;
-import org.muganga.fragments.ComingSoonFragment;
-import org.muganga.fragments.InTheatersFragment;
-import org.muganga.fragments.TopMoviesFragment;
+import org.muganga.fragments.ContactFragment;
+import org.muganga.fragments.AskDoctorFragment;
+import org.muganga.fragments.LocationsFragment;
 import org.muganga.services.MoviesService;
 import org.muganga.tabs.SlidingTabLayout;
 import org.muganga.utilities.LogHelper;
@@ -39,14 +38,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     public static final int TAB_HOME = 0;
-    public static final int TAB_IN_THEATERS = 1;
-    public static final int TAB_TOP_MOVIES = 2;
+    public static final int TAB_ASK_DOCTOR = 1;
+    public static final int TAB_LOCATIONS = 2;
 
-    public static final int TAB_COMING_SOON = 3;
+    public static final int TAB_CONTACT = 3;
 
-    public static final int TAB_BOTTOM_MOVIES = 4;
 
-    public static final int TAB_COUNT = 5;
+    public static final int TAB_COUNT = 4;
 
 
     private Toolbar toolbar;
@@ -327,24 +325,18 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
 
-                case TAB_IN_THEATERS:
-                    fragment = InTheatersFragment.newInstance("", "");
+                case TAB_ASK_DOCTOR:
+                    fragment = AskDoctorFragment.newInstance("", "");
                     break;
 
-                case TAB_TOP_MOVIES:
-                    fragment = TopMoviesFragment.newInstance("", "");
+                case TAB_LOCATIONS:
+                    fragment = LocationsFragment.newInstance("", "");
 
-
-                    break;
-
-                case TAB_COMING_SOON:
-                    fragment = ComingSoonFragment.newInstance("", "");
 
                     break;
 
-                case TAB_BOTTOM_MOVIES:
-                    fragment = BottomMoviesFragment.newInstance("", "");
-
+                case TAB_CONTACT:
+                    fragment = ContactFragment.newInstance("", "");
 
                     break;
 

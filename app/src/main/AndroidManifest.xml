@@ -165,8 +165,7 @@
             android:theme="@style/AppTheme.Base" />
         <activity
             android:name=".activities.SignInActivity"
-            android:label="@string/title_activity_sign_in"/>
-
+            android:label="@string/title_activity_sign_in" />
 
         <service
             android:name=".services.MyFirebaseMessagingService"
@@ -175,7 +174,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
         <service
             android:name=".services.MyFirebaseInstanceIdService"
             android:exported="false">
@@ -183,6 +181,11 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
+        <activity
+            android:name=".activities.LocationsActivity"
+            android:label="@string/title_activity_locations"
+            android:theme="@style/AppTheme.Base"></activity>
     </application>
 
 </manifest>

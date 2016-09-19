@@ -72,7 +72,7 @@ public class FirebaseActivity extends AppCompatActivity  implements GoogleApiCli
     private static final String TAG = "FirebaseActivity";
     public static final String MESSAGES_CHILD = "messages";
     private static final int REQUEST_INVITE = 1;
-    public static final int DEFAULT_MSG_LENGTH_LIMIT = 10;
+    public static final int DEFAULT_MSG_LENGTH_LIMIT = 200;
     public static final String ANONYMOUS = "anonymous";
     private static final String MESSAGE_SENT_EVENT = "message_sent";
     private String mUsername;
@@ -102,7 +102,7 @@ public class FirebaseActivity extends AppCompatActivity  implements GoogleApiCli
         setContentView(R.layout.activity_firebase);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+//hide this for now
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +111,8 @@ public class FirebaseActivity extends AppCompatActivity  implements GoogleApiCli
                         .setAction("Action", null).show();
             }
         });
+
+
 
         //from firebase
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -247,7 +249,7 @@ public class FirebaseActivity extends AppCompatActivity  implements GoogleApiCli
 // Define default config values. Defaults are used when fetched config values are not
 // available. Eg: if an error occurred fetching values from the server.
         Map<String, Object> defaultConfigMap = new HashMap<>();
-        defaultConfigMap.put("friendly_msg_length", 10L);
+        defaultConfigMap.put("friendly_msg_length", 200L);
 
 // Apply config settings and default values.
         mFirebaseRemoteConfig.setConfigSettings(firebaseRemoteConfigSettings);

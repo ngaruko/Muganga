@@ -21,7 +21,7 @@ import org.muganga.utilities.MovieSorter;
 import org.muganga.utilities.SortListener;
 
 
-public class ComingSoonFragment extends Fragment implements   LoaderManager.LoaderCallbacks<Cursor>, SortListener {
+public class ContactFragment extends Fragment implements   LoaderManager.LoaderCallbacks<Cursor>, SortListener {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -40,12 +40,12 @@ public class ComingSoonFragment extends Fragment implements   LoaderManager.Load
     private RecyclerView mRecyclerView;
 
 
-    public ComingSoonFragment() {
+    public ContactFragment() {
         // Required empty public constructor
     }
 
-    public static ComingSoonFragment newInstance(String param1, String param2) {
-        ComingSoonFragment fragment = new ComingSoonFragment();
+    public static ContactFragment newInstance(String param1, String param2) {
+        ContactFragment fragment = new ContactFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

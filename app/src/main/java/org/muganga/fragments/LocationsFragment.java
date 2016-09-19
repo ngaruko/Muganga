@@ -9,21 +9,25 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import org.muganga.R;
-import org.muganga.adapters.AdapterBottomMovies;
+import org.muganga.adapters.AdapterTopMovies;
 import org.muganga.data.MovieLoader;
 import org.muganga.services.MoviesService;
 import org.muganga.utilities.MovieSorter;
 import org.muganga.utilities.SortListener;
 
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link LocationsFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class LocationsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>,SortListener {
 
-public class BottomMoviesFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> , SortListener{
-
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -34,16 +38,14 @@ public class BottomMoviesFragment extends Fragment implements LoaderManager.Load
 
     private static final String TAG_SORT_RATING = "sortRating";
 
-    private String mParam1;
-    private String mParam2;
     private RecyclerView mRecyclerView;
 
-    public BottomMoviesFragment() {
+    public LocationsFragment() {
         // Required empty public constructor
     }
 
-    public static BottomMoviesFragment newInstance(String param1, String param2) {
-        BottomMoviesFragment fragment = new BottomMoviesFragment();
+    public static android.support.v4.app.Fragment newInstance(String param1, String param2) {
+        LocationsFragment fragment = new LocationsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -54,17 +56,16 @@ public class BottomMoviesFragment extends Fragment implements LoaderManager.Load
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
 
-        getActivity().getLoaderManager().initLoader(3, null, this);
+
+        getActivity().getLoaderManager().initLoader(1, null, this);
+
         if (savedInstanceState == null) {
 
-            //getActivity().startService(new Intent(getActivity(), MoviesService.class));
+            //  getActivity().startService(new Intent(getActivity(), MoviesService.class));
 
         }
+
 
     }
 
@@ -72,11 +73,10 @@ public class BottomMoviesFragment extends Fragment implements LoaderManager.Load
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view= inflater.inflate(R.layout.fragment_bottom_movies, container, false);
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.bottom_movies_recyclerView);
+        View view= inflater.inflate(R.layout.fragment_top_movies, container, false);
 
-
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.top_movies_recyclerView);
 
         return view;
     }
@@ -84,18 +84,28 @@ public class BottomMoviesFragment extends Fragment implements LoaderManager.Load
 
     @Override
     public android.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return MovieLoader.newAllBottomMoviesInstance(getActivity());
+        return MovieLoader.newAllTopMoviesInstance(getActivity());
+        //  return null;
     }
 
     @Override
     public void onLoadFinished(android.content.Loader<Cursor> loader, Cursor cursor) {
-        AdapterBottomMovies adapter = new AdapterBottomMovies(cursor, getActivity());
-        adapter.setHasStableIds(true);
-        mRecyclerView.setAdapter(adapter);
-        int columnCount = getResources().getInteger(R.integer.list_column_count);
-        StaggeredGridLayoutManager sglm =
-                new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(sglm);
+
+        if (isAdded()) {
+            Log.d("Loading....", "Top movies!");
+            AdapterTopMovies adapter = new AdapterTopMovies(cursor, getActivity());
+            adapter.setHasStableIds(true);
+            try {
+                mRecyclerView.setAdapter(adapter);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            int columnCount = getResources().getInteger(R.integer.list_column_count);
+
+            StaggeredGridLayoutManager sglm2 =
+                    new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
+            mRecyclerView.setLayoutManager(sglm2);
+        }
     }
 
     @Override
@@ -107,7 +117,7 @@ public class BottomMoviesFragment extends Fragment implements LoaderManager.Load
     public void onSortTitle() {
         MovieSorter.Sort.setSortString(TAG_SORT_TITLE);
 
-        getActivity().getLoaderManager().restartLoader(3, null, this);
+        getActivity().getLoaderManager().restartLoader(1, null, this);
         Snackbar
                 .make(getView(), "Sorted by Title", Snackbar.LENGTH_LONG)
                 .setAction("OK", null)
@@ -119,7 +129,7 @@ public class BottomMoviesFragment extends Fragment implements LoaderManager.Load
     public void onSortByDate() {
         MovieSorter.Sort.setSortString(TAG_SORT_DATE);
 
-        getActivity().getLoaderManager().restartLoader(3, null, this);
+        getActivity().getLoaderManager().restartLoader(1, null, this);
         Snackbar
                 .make(getView(), "Sorted by Date", Snackbar.LENGTH_LONG)
                 .setAction("OK", null)
@@ -131,7 +141,7 @@ public class BottomMoviesFragment extends Fragment implements LoaderManager.Load
     public void onSortByRating() {
 
         MovieSorter.Sort.setSortString(TAG_SORT_RATING);
-        getActivity().getLoaderManager().restartLoader(3, null, this);
+        getActivity().getLoaderManager().restartLoader(1, null, this);
 
 
         Snackbar
@@ -148,6 +158,6 @@ public class BottomMoviesFragment extends Fragment implements LoaderManager.Load
 
     private void refresh() {
         getActivity().startService(new Intent(getActivity(), MoviesService.class));
-        getActivity().getLoaderManager().restartLoader(3, null, this);
+        getActivity().getLoaderManager().restartLoader(1, null, this);
     }
 }
