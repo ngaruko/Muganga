@@ -4,7 +4,7 @@ import android.os.AsyncTask;
 
 import com.android.volley.RequestQueue;
 
-import org.muganga.Callbacks.MovieLoadedListener;
+import org.muganga.Callbacks.ItemLoadedListener;
 import org.muganga.data.Movie;
 import org.muganga.VolleySingleton;
 import org.muganga.json.Requestor;
@@ -22,11 +22,11 @@ public class FetchMovieTask extends AsyncTask<String, Void, Movie> {
     public JSONObject response;
     private VolleySingleton volleySingleton;
     private RequestQueue requestQueue;
-    private MovieLoadedListener myComponent;
+    private ItemLoadedListener myComponent;
 
 
 
-    public FetchMovieTask(MovieLoadedListener myComponent) {
+    public FetchMovieTask(ItemLoadedListener myComponent) {
         this.myComponent = myComponent;
         volleySingleton = VolleySingleton.getInstance();
         requestQueue = volleySingleton.getRequestQueue();

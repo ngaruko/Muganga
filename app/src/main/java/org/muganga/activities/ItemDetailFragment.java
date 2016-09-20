@@ -36,9 +36,9 @@ import org.muganga.utilities.ImageLoaderHelper;
 import org.muganga.utilities.ObservableScrollView;
 
 
-public class MoviePosterFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>, View.OnClickListener {
+public class ItemDetailFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>, View.OnClickListener {
     public static final String ARG_ITEM_ID = "in_theaters_id";
-    public static final String TAG = "MoviePosterFragment";
+    public static final String TAG = "ItemDetailFragment";
     public static final float PARALLAX_FACTOR = 1.25f;
     public int mTitleId;
     public String mTitle;
@@ -70,13 +70,13 @@ public class MoviePosterFragment extends Fragment implements LoaderManager.Loade
     private String fragmentIdentifier;
 
 
-    public MoviePosterFragment() {
+    public ItemDetailFragment() {
     }
 
-    public static MoviePosterFragment newInstance(long itemId) {
+    public static ItemDetailFragment newInstance(long itemId) {
         Bundle arguments = new Bundle();
         arguments.putLong(ARG_ITEM_ID, itemId);
-        MoviePosterFragment fragment = new MoviePosterFragment();
+        ItemDetailFragment fragment = new ItemDetailFragment();
         fragment.setArguments(arguments);
         return fragment;
     }
@@ -116,8 +116,8 @@ public class MoviePosterFragment extends Fragment implements LoaderManager.Loade
         setHasOptionsMenu(true);
     }
 
-    public MoviePosterActivity getActivityCast() {
-        return (MoviePosterActivity) getActivity();
+    public ItemDetailActivity getActivityCast() {
+        return (ItemDetailActivity) getActivity();
     }
 
     @Override
@@ -183,7 +183,7 @@ public class MoviePosterFragment extends Fragment implements LoaderManager.Loade
             @Override
             public void onScrollChanged() {
                 mScrollY = mScrollView.getScrollY();
-                getActivityCast().onUpButtonFloorChanged(mItemId, MoviePosterFragment.this);
+                getActivityCast().onUpButtonFloorChanged(mItemId, ItemDetailFragment.this);
                 mPhotoContainerView.setTranslationY((int) (mScrollY - mScrollY / PARALLAX_FACTOR));
                 updateStatusBar();
             }

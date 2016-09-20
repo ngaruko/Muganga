@@ -24,7 +24,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import org.muganga.activities.HomeFragment;
-import org.muganga.activities.MovieSearchActivity;
+import org.muganga.activities.GlobalSearchActivity;
 import org.muganga.fragments.ContactFragment;
 import org.muganga.fragments.AskDoctorFragment;
 import org.muganga.fragments.LocationsFragment;
@@ -218,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             LogHelper.log("Sending intent from Main: " + searchQuery);
-            Intent intent = new Intent(this, MovieSearchActivity.class);
+            Intent intent = new Intent(this, GlobalSearchActivity.class);
 
             intent.putExtra("title_extra", searchQuery);
             startActivity(intent);

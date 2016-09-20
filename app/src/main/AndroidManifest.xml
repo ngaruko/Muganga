@@ -79,7 +79,7 @@
         <service android:name=".widget.WidgetIntentService" />
 
         <activity
-            android:name=".activities.MoviePosterActivity"
+            android:name=".activities.ItemDetailActivity"
             android:label="@string/title_activity_movie_detail"
             android:parentActivityName=".MainActivity">
             <intent-filter>
@@ -103,7 +103,7 @@
                 android:value="org.muganga.MainActivity" />
         </activity>
         <activity
-            android:name=".activities.MovieSearchActivity"
+            android:name=".activities.GlobalSearchActivity"
             android:label="@string/title_activity_movie_search">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -125,7 +125,7 @@
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.muganga.activities.MoviePosterActivity" />
+                android:value=".activities.ItemDetailActivity" />
         </activity>
 
         <!--
@@ -185,7 +185,8 @@
         <activity
             android:name=".activities.LocationsActivity"
             android:label="@string/title_activity_locations"
-            android:theme="@style/AppTheme.Base"></activity>
+            android:theme="@style/AppTheme.Base" />
+        <activity android:name=".activities.NotificationActivity"></activity>
     </application>
 
 </manifest>

@@ -7,7 +7,7 @@ import android.os.AsyncTask;
 
 import com.android.volley.RequestQueue;
 
-import org.muganga.Callbacks.MoviesFoundListener;
+import org.muganga.Callbacks.ItemsFoundListener;
 import org.muganga.VolleySingleton;
 import org.muganga.data.MoviesContract;
 import org.muganga.json.JSonParser;
@@ -25,12 +25,12 @@ public class SearchMoviesTask extends AsyncTask<String, Void, Void> {
     public JSONArray response;
     private VolleySingleton volleySingleton;
     private RequestQueue requestQueue;
-    private MoviesFoundListener myComponent;
+    private ItemsFoundListener myComponent;
     private Context mContext;
     private JSONObject mResponse;
 
 
-    public SearchMoviesTask(MoviesFoundListener myComponent, Context context) {
+    public SearchMoviesTask(ItemsFoundListener myComponent, Context context) {
         this.myComponent = myComponent;
         this.mContext = context;
         volleySingleton = VolleySingleton.getInstance();

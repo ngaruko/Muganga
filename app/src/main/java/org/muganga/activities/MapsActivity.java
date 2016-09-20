@@ -66,7 +66,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLon
 
 
         Intent i = getIntent();
-        location = i.getIntExtra("locationInfo", -1);
+        location = i.getIntExtra("locationInfo",-1);
 
 
         setUpMapIfNeeded();
@@ -89,7 +89,8 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLon
                 //                                          int[] grantResults)
                 // to handle the case where the user grants the permission. See the documentation
                 // for ActivityCompat#requestPermissions for more details.
-                return;
+                Log.e("Check permission", "Doing nothing!");
+               // return;
             }
             locationManager.requestLocationUpdates(provider, 400, 1, this);
 
@@ -147,6 +148,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLon
 
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
+            Log.e("Mapsetup", "was null");
             // Try to obtain the map from the SupportMapFragment.
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.map);
@@ -154,6 +156,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLon
 //            mMap.setOnMapLongClickListener(this);
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
+                Log.e("Mapsetup", "not null");
                 setUpMap();
 
             }
@@ -179,7 +182,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLon
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
         if (location != -1 && location != 0) {
-
+            Log.e("Location ", "-1 or null");
             locationManager.removeUpdates(this);
 
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LocationsActivity.locations.get(location), 10));
@@ -196,7 +199,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMapLon
                 //                                          int[] grantResults)
                 // to handle the case where the user grants the permission. See the documentation
                 // for ActivityCompat#requestPermissions for more details.
-                return;
+                Log.e("che", "cke null");
             }
             locationManager.requestLocationUpdates(provider, 400, 1, this);
 

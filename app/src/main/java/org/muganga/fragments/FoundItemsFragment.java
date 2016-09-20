@@ -21,7 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import org.muganga.Callbacks.MoviesFoundListener;
+import org.muganga.Callbacks.ItemsFoundListener;
 import org.muganga.R;
 import org.muganga.adapters.AdapterFoundMovies;
 import org.muganga.data.MovieLoader;
@@ -30,7 +30,7 @@ import org.muganga.utilities.LogHelper;
 
 import org.json.JSONObject;
 
-public class FoundMoviesFragment extends Fragment implements MoviesFoundListener, LoaderManager.LoaderCallbacks<Cursor> {
+public class FoundItemsFragment extends Fragment implements ItemsFoundListener, LoaderManager.LoaderCallbacks<Cursor> {
 
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -48,12 +48,12 @@ public class FoundMoviesFragment extends Fragment implements MoviesFoundListener
     private boolean mHasResults = false;
 
 
-    public FoundMoviesFragment() {
+    public FoundItemsFragment() {
         // Required empty public constructor
     }
 
-    public static FoundMoviesFragment newInstance(String param1, String param2) {
-        FoundMoviesFragment fragment = new FoundMoviesFragment();
+    public static FoundItemsFragment newInstance(String param1, String param2) {
+        FoundItemsFragment fragment = new FoundItemsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

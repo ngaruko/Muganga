@@ -7,12 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import org.muganga.Callbacks.MovieLoadedListener;
+import org.muganga.Callbacks.ItemLoadedListener;
 import org.muganga.R;
 import org.muganga.data.Movie;
 import org.muganga.utilities.LogHelper;
 
-public class MovieSearchActivity extends AppCompatActivity implements MovieLoadedListener {
+public class GlobalSearchActivity extends AppCompatActivity implements ItemLoadedListener {
 
 
     public Movie mMovie;

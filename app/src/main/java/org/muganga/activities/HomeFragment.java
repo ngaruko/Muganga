@@ -172,6 +172,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 sendIntent.setType("text/plain");
                 startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
 
+                //
+                startActivity(new Intent(getContext(),NotificationActivity.class));
+
                 break;
             case R.id.email_button:
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);

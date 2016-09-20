@@ -21,7 +21,7 @@ import com.android.volley.toolbox.ImageLoader;
 
 import org.muganga.R;
 import org.muganga.VolleySingleton;
-import org.muganga.activities.MoviePosterActivity;
+import org.muganga.activities.ItemDetailActivity;
 import org.muganga.data.MoviesContract;
 import org.muganga.data.TopMovieLoader;
 import org.muganga.utilities.Constants;
@@ -73,7 +73,7 @@ public class AdapterFoundMovies extends RecyclerView.Adapter<AdapterFoundMovies.
         view.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        Intent intent = new Intent(context, MoviePosterActivity.class);
+                                        Intent intent = new Intent(context, ItemDetailActivity.class);
 
                                         try {
 
@@ -96,7 +96,7 @@ public class AdapterFoundMovies extends RecyclerView.Adapter<AdapterFoundMovies.
                                                 ActivityCompat.startActivity(context, intent, options.toBundle());
                                             } else {
 
-                                                Intent i = new Intent(context, MoviePosterActivity.class);
+                                                Intent i = new Intent(context, ItemDetailActivity.class);
                                                 Uri uri = MoviesContract.InTheater.buildItemUri(getItemId(vh.getAdapterPosition()));
                                                 i.setData(uri);
 

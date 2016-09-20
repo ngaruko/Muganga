@@ -26,7 +26,7 @@ import org.muganga.data.MoviesContract;
 import org.muganga.data.TopMovieLoader;
 
 
-public class MoviePosterActivity extends AppCompatActivity
+public class ItemDetailActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private Cursor mCursor;
@@ -219,7 +219,7 @@ public class MoviePosterActivity extends AppCompatActivity
         mPagerAdapter.notifyDataSetChanged();
     }
 
-    public void onUpButtonFloorChanged(long itemId, MoviePosterFragment fragment) {
+    public void onUpButtonFloorChanged(long itemId, ItemDetailFragment fragment) {
         if (itemId == mSelectedItemId) {
             mSelectedItemUpButtonFloor = fragment.getUpButtonFloor();
 
@@ -245,7 +245,7 @@ public class MoviePosterActivity extends AppCompatActivity
         @Override
         public void setPrimaryItem(ViewGroup container, int position, Object object) {
             super.setPrimaryItem(container, position, object);
-            MoviePosterFragment fragment = (MoviePosterFragment) object;
+            ItemDetailFragment fragment = (ItemDetailFragment) object;
             if (fragment != null) {
                 mSelectedItemUpButtonFloor = fragment.getUpButtonFloor();
                 //updateUpButtonPosition();
@@ -255,7 +255,7 @@ public class MoviePosterActivity extends AppCompatActivity
         @Override
         public Fragment getItem(int position) {
             mCursor.moveToPosition(position);
-            return MoviePosterFragment.newInstance(mCursor.getLong(MovieLoader.Query._ID));
+            return ItemDetailFragment.newInstance(mCursor.getLong(MovieLoader.Query._ID));
         }
 
         @Override

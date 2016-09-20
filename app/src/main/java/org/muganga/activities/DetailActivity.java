@@ -29,7 +29,7 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 
-import org.muganga.Callbacks.MovieLoadedListener;
+import org.muganga.Callbacks.ItemLoadedListener;
 import org.muganga.MainActivity;
 import org.muganga.R;
 import org.muganga.data.Movie;
@@ -218,7 +218,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 if (ni != null && ni.isConnected()) {
                     Toast.makeText(getBaseContext(), "Loading your trailer...",
                             Toast.LENGTH_LONG).show();
-                    new FetchMovieTask(new MovieLoadedListener() {
+                    new FetchMovieTask(new ItemLoadedListener() {
                         @Override
                         public void onMovieLoded(Movie movie) {
 
