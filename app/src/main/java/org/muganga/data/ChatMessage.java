@@ -3,16 +3,16 @@ package org.muganga.data;
 /**
  * Created by bede.ngaruko on 18-Sep-16.
  */
-public class FriendlyMessage {
+public class ChatMessage {
 
     private String text;
     private String name;
     private String photoUrl;
 
-    public FriendlyMessage() {
+    public ChatMessage() {
     }
 
-    public FriendlyMessage(String text, String name, String photoUrl) {
+    public ChatMessage(String text, String name, String photoUrl) {
         this.text = text;
         this.name = name;
         this.photoUrl = photoUrl;

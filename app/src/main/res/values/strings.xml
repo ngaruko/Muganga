@@ -19,8 +19,8 @@
     <!--FOR TABS-->
     <string-array name="tabs">
         <item> Home</item>
-        <item> Ask </item>
-        <item> Find</item>
+        <item> Find </item>
+        <item> Ask</item>
         <item> Contact</item>
     </string-array>
 

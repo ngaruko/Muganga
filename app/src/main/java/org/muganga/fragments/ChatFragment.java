@@ -1,22 +1,24 @@
-package org.muganga.activities;
+package org.muganga.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -41,7 +43,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
+import org.muganga.MainApplication;
 import org.muganga.R;
+import org.muganga.activities.SignInActivity;
 import org.muganga.data.ChatMessage;
 import org.muganga.utilities.CodelabPreferences;
 
@@ -50,22 +54,40 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class FirebaseActivity extends AppCompatActivity  implements GoogleApiClient.OnConnectionFailedListener {
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link ChatFragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link ChatFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class ChatFragment extends Fragment implements GoogleApiClient.OnConnectionFailedListener {
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
 
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
+    //firebase stuff
     private FirebaseAnalytics mFirebaseAnalytics;
+    private View mView;
 
-    public static class MessageViewHolder extends RecyclerView.ViewHolder {
-    public TextView messageTextView;
-    public TextView messengerTextView;
-    public CircleImageView messengerImageView;
+       public static class MessageViewHolder extends RecyclerView.ViewHolder {
+        public TextView messageTextView;
+        public TextView messengerTextView;
+        public CircleImageView messengerImageView;
 
-    public MessageViewHolder(View v) {
-        super(v);
-        messageTextView = (TextView) itemView.findViewById(R.id.messageTextView);
-        messengerTextView = (TextView) itemView.findViewById(R.id.messengerTextView);
-        messengerImageView = (CircleImageView) itemView.findViewById(R.id.messengerImageView);
+        public MessageViewHolder(View v) {
+            super(v);
+            messageTextView = (TextView) itemView.findViewById(R.id.messageTextView);
+            messengerTextView = (TextView) itemView.findViewById(R.id.messengerTextView);
+            messengerImageView = (CircleImageView) itemView.findViewById(R.id.messengerImageView);
+        }
     }
-}
 
 
     private static final String TAG = "FirebaseActivity";
@@ -95,26 +117,40 @@ public class FirebaseActivity extends AppCompatActivity  implements GoogleApiCli
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
 
+
+
+    private OnFragmentInteractionListener mListener;
+
+    public ChatFragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment ChatFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static ChatFragment newInstance(String param1, String param2) {
+        ChatFragment fragment = new ChatFragment();
+
+        return fragment;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_firebase);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//hide this for now
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
 
         //from firebase
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        //from firebase
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         // Set default username is anonymous.
         mUsername = ANONYMOUS;
 
@@ -123,8 +159,8 @@ public class FirebaseActivity extends AppCompatActivity  implements GoogleApiCli
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         if (mFirebaseUser == null) {
             // Not signed in, launch the Sign In activity
-            startActivity(new Intent(this, SignInActivity.class));
-            finish();
+            startActivity(new Intent(getContext(), SignInActivity.class));
+            getActivity().finish();
             return;
         } else {
             mUsername = mFirebaseUser.getDisplayName();
@@ -135,15 +171,67 @@ public class FirebaseActivity extends AppCompatActivity  implements GoogleApiCli
 
 
 
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+        mGoogleApiClient = new GoogleApiClient.Builder(getContext())
+                .enableAutoManage(getActivity() /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API)
                 .build();
 
+
+        // Initialize Firebase Remote Config.
+        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+
+// Define Firebase Remote Config Settings.
+        FirebaseRemoteConfigSettings firebaseRemoteConfigSettings =
+                new FirebaseRemoteConfigSettings.Builder()
+                        .setDeveloperModeEnabled(true)
+                        .build();
+
+// Define default config values. Defaults are used when fetched config values are not
+// available. Eg: if an error occurred fetching values from the server.
+        Map<String, Object> defaultConfigMap = new HashMap<>();
+        defaultConfigMap.put("friendly_msg_length", 200L);
+
+// Apply config settings and default values.
+        mFirebaseRemoteConfig.setConfigSettings(firebaseRemoteConfigSettings);
+        mFirebaseRemoteConfig.setDefaults(defaultConfigMap);
+
+// Fetch remote config.
+        fetchConfig();
+
+
+
+        //init
+        mGoogleApiClient = new GoogleApiClient.Builder(getContext())
+                //.enableAutoManage(this, this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API)
+                .addApi(AppInvite.API)
+                .build();
+
+
+        //ini
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        //mView = inflater.inflate(R.layout.activity_firebase, container, false);
+        mView = inflater.inflate(R.layout.fragment_chat, container, false);
+        mMessageRecyclerView = (RecyclerView) mView.findViewById(R.id.messageRecyclerView);
+        populateView(mView);
+        //
+
+        return mView;
+
+    }
+
+    private void populateView(View mView) {
         // Initialize ProgressBar and RecyclerView.
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-        mMessageRecyclerView = (RecyclerView) findViewById(R.id.messageRecyclerView);
-        mLinearLayoutManager = new LinearLayoutManager(this);
+        mProgressBar = (ProgressBar) mView.findViewById(R.id.progressBar);
+      //  mMessageRecyclerView = (RecyclerView)mView.findViewById(R.id.messageRecyclerView);
+        mLinearLayoutManager = new LinearLayoutManager(getContext());
         mLinearLayoutManager.setStackFromEnd(true);
         mMessageRecyclerView.setLayoutManager(mLinearLayoutManager);
 
@@ -168,10 +256,10 @@ public class FirebaseActivity extends AppCompatActivity  implements GoogleApiCli
                 if (friendlyMessage.getPhotoUrl() == null) {
                     viewHolder.messengerImageView
                             .setImageDrawable(ContextCompat
-                                    .getDrawable(FirebaseActivity.this,
+                                    .getDrawable(getContext(),
                                             R.drawable.quantum_ic_pause_circle_filled_grey600_36));
                 } else {
-                    Glide.with(FirebaseActivity.this)
+                    Glide.with(MainApplication.getAppContext())
                             .load(friendlyMessage.getPhotoUrl())
                             .into(viewHolder.messengerImageView);
                 }
@@ -199,7 +287,7 @@ public class FirebaseActivity extends AppCompatActivity  implements GoogleApiCli
         mMessageRecyclerView.setLayoutManager(mLinearLayoutManager);
         mMessageRecyclerView.setAdapter(mFirebaseAdapter);
 
-        mMessageEditText = (EditText) findViewById(R.id.messageEditText);
+        mMessageEditText = (EditText) mView.findViewById(R.id.messageEditText);
         mMessageEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(mSharedPreferences
                 .getInt(CodelabPreferences.FRIENDLY_MSG_LENGTH, DEFAULT_MSG_LENGTH_LIMIT))});
         mMessageEditText.addTextChangedListener(new TextWatcher() {
@@ -221,7 +309,7 @@ public class FirebaseActivity extends AppCompatActivity  implements GoogleApiCli
             }
         });
 
-        mSendButton = (Button) findViewById(R.id.sendButton);
+        mSendButton = (Button) mView.findViewById(R.id.sendButton);
         mSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -234,51 +322,7 @@ public class FirebaseActivity extends AppCompatActivity  implements GoogleApiCli
                 mMessageEditText.setText("");
             }
         });
-
-
-        // Initialize Firebase Remote Config.
-        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
-
-// Define Firebase Remote Config Settings.
-        FirebaseRemoteConfigSettings firebaseRemoteConfigSettings =
-                new FirebaseRemoteConfigSettings.Builder()
-                        .setDeveloperModeEnabled(true)
-                        .build();
-
-// Define default config values. Defaults are used when fetched config values are not
-// available. Eg: if an error occurred fetching values from the server.
-        Map<String, Object> defaultConfigMap = new HashMap<>();
-        defaultConfigMap.put("friendly_msg_length", 200L);
-
-// Apply config settings and default values.
-        mFirebaseRemoteConfig.setConfigSettings(firebaseRemoteConfigSettings);
-        mFirebaseRemoteConfig.setDefaults(defaultConfigMap);
-
-// Fetch remote config.
-        fetchConfig();
-
-
-
-        //init
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                //.enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API)
-                .addApi(AppInvite.API)
-                .build();
-
-
-        //ini
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
     }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-
-       // mGoogleApiClient.stopAutoManage(this);
-      //  mGoogleApiClient.disconnect();
-    }
-
 
     // Fetch the config to determine the allowed length of messages.
     public void fetchConfig() {
@@ -311,7 +355,6 @@ public class FirebaseActivity extends AppCompatActivity  implements GoogleApiCli
                 });
     }
 
-
     /**
      * Apply retrieved length limit to edit text field.
      * This result may be fresh from the server or it may be from cached
@@ -324,6 +367,7 @@ public class FirebaseActivity extends AppCompatActivity  implements GoogleApiCli
                 InputFilter.LengthFilter(friendly_msg_length.intValue())});
         Log.d(TAG, "FML is: " + friendly_msg_length);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -340,7 +384,7 @@ public class FirebaseActivity extends AppCompatActivity  implements GoogleApiCli
             case R.id.sign_out_menu:
                 mFirebaseAuth.signOut();
                 mUsername = ANONYMOUS;
-                startActivity(new Intent(this, SignInActivity.class));
+                startActivity(new Intent(getContext(), SignInActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -366,17 +410,19 @@ public class FirebaseActivity extends AppCompatActivity  implements GoogleApiCli
         // An unresolvable error has occurred and Google APIs (including Sign-In) will not
         // be available.
         Log.d("tag", "onConnectionFailed:" + connectionResult);
-        Toast.makeText(this, "Google Play Services error.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Google Play Services error.", Toast.LENGTH_SHORT).show();
     }
 
 
+
+
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d(TAG, "onActivityResult: requestCode=" + requestCode + ", resultCode=" + resultCode);
 
         if (requestCode == REQUEST_INVITE) {
-            if (resultCode == RESULT_OK) {
+            if (resultCode == getActivity().RESULT_OK) {
                 Bundle payload = new Bundle();
                 payload.putString(FirebaseAnalytics.Param.VALUE, "sent");
                 mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SHARE,
@@ -396,5 +442,52 @@ public class FirebaseActivity extends AppCompatActivity  implements GoogleApiCli
             }
         }
     }
-}
 
+
+
+
+
+
+
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p/>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
+    }
+
+
+
+}

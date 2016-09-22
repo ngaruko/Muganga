@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 
 import org.muganga.R;
@@ -24,7 +23,6 @@ import org.muganga.VolleySingleton;
 import org.muganga.activities.ItemDetailActivity;
 import org.muganga.data.MovieLoader;
 import org.muganga.data.MoviesContract;
-import org.muganga.utilities.Constants;
 
 
 public class AdapterMoviesInTheaters extends RecyclerView.Adapter<AdapterMoviesInTheaters.ViewHolderMovies> {
@@ -138,29 +136,11 @@ public class AdapterMoviesInTheaters extends RecyclerView.Adapter<AdapterMoviesI
             holder.movieRating.setAlpha(1.0F);
         }
 
-        //load url
 
-        String thummbailUrl = mCursor.getString(MovieLoader.Query.COLUMN_URL_THUMBNAIL);
+        holder.movieThumbnail.setImageResource(R.drawable.google_plus);
 
-        loadImages(holder, thummbailUrl);
     }
 
-    private void loadImages(final ViewHolderMovies holder, String thumbailUrl) {
-        if (!thumbailUrl.equals(Constants.NA)) {
-            mImageLoader.get(thumbailUrl, new ImageLoader.ImageListener() {
-                @Override
-                public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
-                    holder.movieThumbnail.setImageBitmap(response.getBitmap());
-                }
-
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    //have a default image here
-
-                }
-            });
-        }
-    }
 
 
     @Override

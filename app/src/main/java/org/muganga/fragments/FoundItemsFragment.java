@@ -25,7 +25,7 @@ import org.muganga.Callbacks.ItemsFoundListener;
 import org.muganga.R;
 import org.muganga.adapters.AdapterFoundMovies;
 import org.muganga.data.MovieLoader;
-import org.muganga.tasks.SearchMoviesTask;
+import org.muganga.tasks.SearchItemsTask;
 import org.muganga.utilities.LogHelper;
 
 import org.json.JSONObject;
@@ -99,7 +99,7 @@ public class FoundItemsFragment extends Fragment implements ItemsFoundListener, 
             getActivity().getLoaderManager().initLoader(6, null, this);
 
 
-        } else new SearchMoviesTask(this, getActivity()).execute(mTitle, "&limit=10");
+        } else new SearchItemsTask(this, getActivity()).execute(mTitle, "&limit=10");
 
 
     }

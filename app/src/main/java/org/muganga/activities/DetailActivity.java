@@ -8,7 +8,6 @@ import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -29,12 +28,9 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 
-import org.muganga.Callbacks.ItemLoadedListener;
 import org.muganga.MainActivity;
 import org.muganga.R;
 import org.muganga.data.Movie;
-import org.muganga.tasks.FetchMovieTask;
-import org.muganga.utilities.Constants;
 import org.muganga.utilities.DrawInsetsFrameLayout;
 import org.muganga.utilities.ImageLoaderHelper;
 import org.muganga.utilities.ObservableScrollView;
@@ -196,21 +192,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 startActivity(new Intent(this, MainActivity.class));
                 break;
             case R.id.view_trailer_button:
+                promptUserToSignIn();
+                break;
             case R.id.movieThumbnail:
-
-                if (!HomeFragment.signedIn) {
-                    try {
-                        promptUserToSignIn();
-                        return;
-                    } catch (Exception e) {
-                        e.printStackTrace();
-
-                        Toast.makeText(getBaseContext(), "This feature is only available for authenticated users.Please sign in first!",
-                                Toast.LENGTH_LONG).show();
-                    }
-
-                }
-
 
                 ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
                 NetworkInfo ni = cm.getActiveNetworkInfo();
@@ -218,45 +202,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 if (ni != null && ni.isConnected()) {
                     Toast.makeText(getBaseContext(), "Loading your trailer...",
                             Toast.LENGTH_LONG).show();
-                    new FetchMovieTask(new ItemLoadedListener() {
-                        @Override
-                        public void onMovieLoded(Movie movie) {
 
-                            if (movie == null) {
-                                Toast.makeText(getBaseContext(), "No trailers available for this movie!",
-                                        Toast.LENGTH_LONG).show();
-                                return;
-                            }
-                            if (movie.getTrailerUrl() == null || movie.getTrailerUrl().isEmpty()) {
-                                Toast.makeText(getBaseContext(), "No trailer available for this movie!",
-                                        Toast.LENGTH_LONG).show();
-                                return;
-                            }
+                    //go online and do whatever needed to do
 
-
-                            mVideoUrl = movie.getTrailerUrl();
-
-
-                            Log.d("Trailer", mVideoUrl);
-
-                            Log.d("Clikced", "Trailer coming");
-                            Log.d("URL", mVideoUrl);
-
-
-                            if (mVideoUrl != null && !mVideoUrl.equals(Constants.NA) && !mVideoUrl.isEmpty()) {
-
-
-                                startActivity(new Intent(Intent.ACTION_VIEW,
-                                        Uri.parse(mVideoUrl)));
-
-                            } else {
-                                Toast.makeText(getBaseContext(), "No trailers available for this movie!",
-                                        Toast.LENGTH_LONG).show();
-                            }
-
-
-                        }
-                    }).execute(mTitle);
                 } else {
 
                     AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -287,7 +235,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
                         startActivity(intent);
 
                     }

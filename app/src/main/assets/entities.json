@@ -1,0 +1,756 @@
+{
+  "data":{
+    "entities":[
+      {
+
+        "healtCenters":[
+          {
+            "title":"Storks",
+            "originalTitle":"",
+            "year":"2016",
+            "releaseDate":"20160923",
+            "directors":[
+              {
+                "name":"Nicholas Stoller",
+                "id":"nm0831557"
+              },
+              {
+                "name":"Doug Sweetland",
+                "id":"nm0842339"
+              }
+            ],
+            "writers":[
+              {
+                "name":"Nicholas Stoller",
+                "id":"nm0831557"
+              }
+            ],
+            "runtime":"89 min",
+            "urlPoster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMTYxNjI3MzcwMF5BMl5BanBnXkFtZTgwOTIyNDY5OTE@._V1_UX182_CR0,0,182,268_AL_.jpg",
+            "countries":[
+              "USA"
+            ],
+            "languages":[
+              "English"
+            ],
+            "genres":[
+              "Animation",
+              "Comedy",
+              "Family",
+              "Fantasy"
+            ],
+            "plot":"Storks deliver babies...or at least they used to. Now they deliver packages for global internet giant Cornerstore.com. Junior, the company's top delivery stork, is about to be promoted when he accidentally activates the Baby Making Machine, producing an adorable and wholly unauthorized baby girl. Desperate to deliver this bundle of trouble before the boss gets wise, Junior and his friend Tulip, the only human on Stork Mountain, race to make their first-ever baby drop - in a wild and revealing journey that could make more than one family whole and restore the storks' true mission in the world.",
+            "simplePlot":"Storks have moved on from delivering babies to packages. But when an order for a baby appears, the best delivery stork must scramble to fix the error by delivering the baby.",
+            "idIMDB":"tt4624424",
+            "urlIMDB":"http://www.imdb.com/title/tt4624424",
+            "rated":"PG",
+            "type":"Movie"
+          },
+          {
+            "title":"Queen of Katwe",
+            "originalTitle":"",
+            "year":"2016",
+            "releaseDate":"20160930",
+            "directors":[
+              {
+                "name":"Mira Nair",
+                "id":"nm0619762"
+              }
+            ],
+            "writers":[
+              {
+                "name":"William Wheeler",
+                "id":"nm0923980"
+              },
+              {
+                "name":"Tim Crothers",
+                "id":"nm1885371"
+              }
+            ],
+            "runtime":"124 min",
+            "urlPoster":"https://images-na.ssl-images-amazon.com/images/M/MV5BNzQ0MDg2NTY4N15BMl5BanBnXkFtZTgwOTk2NzU3OTE@._V1_UX182_CR0,0,182,268_AL_.jpg",
+            "countries":[
+              "South Africa",
+              "USA"
+            ],
+            "languages":[
+              "English"
+            ],
+            "genres":[
+              "Biography",
+              "Drama",
+              "Sport"
+            ],
+            "plot":"At the age of 10, Phiona Mutesi sees her world rapidly change when the young girl from the streets of rural Uganda is introduced to the game of chess.",
+            "simplePlot":"At the age of 10, Phiona Mutesi sees her world rapidly change when the young girl from the streets of rural Uganda is introduced to the game of chess.",
+            "idIMDB":"tt4341582",
+            "urlIMDB":"http://www.imdb.com/title/tt4341582",
+            "rating":"7.3",
+            "rated":"PG",
+            "votes":"70",
+            "type":"Movie"
+          },
+          {
+            "title":"The Magnificent Seven",
+            "originalTitle":"",
+            "year":"2016",
+            "releaseDate":"20160923",
+            "directors":[
+              {
+                "name":"Antoine Fuqua",
+                "id":"nm0298807"
+              }
+            ],
+            "writers":[
+              {
+                "name":"Akira Kurosawa",
+                "id":"nm0000041"
+              },
+              {
+                "name":"Shinobu Hashimoto",
+                "id":"nm0368074"
+              }
+            ],
+            "runtime":"132 min",
+            "urlPoster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMTUzNTc0NTAyM15BMl5BanBnXkFtZTgwMTk1ODA5OTE@._V1_UX182_CR0,0,182,268_AL_.jpg",
+            "countries":[
+              "USA"
+            ],
+            "languages":[
+              "English"
+            ],
+            "genres":[
+              "Action",
+              "Western"
+            ],
+            "plot":"Director Antoine Fuqua brings his modern vision to a classic story in The Magnificent Seven. With the town of Rose Creek under the deadly control of industrialist Bartholomew Bogue, the desperate townspeople employ protection from seven outlaws, bounty hunters, gamblers and hired guns. As they prepare the town for the violent showdown that they know is coming, these seven mercenaries find themselves fighting for more than money.",
+            "simplePlot":"Seven gun men in the old west gradually come together to help a poor village against savage thieves.",
+            "idIMDB":"tt2404435",
+            "urlIMDB":"http://www.imdb.com/title/tt2404435",
+            "rating":"6.9",
+            "metascore":"51",
+            "rated":"PG-13",
+            "votes":"450",
+            "type":"Movie"
+          },
+          {
+            "title":"Goat",
+            "originalTitle":"",
+            "year":"2016",
+            "releaseDate":"20160923",
+            "directors":[
+              {
+                "name":"Andrew Neel",
+                "id":"nm0624157"
+              }
+            ],
+            "writers":[
+              {
+                "name":"David Gordon Green",
+                "id":"nm0337773"
+              },
+              {
+                "name":"Brad Land",
+                "id":"nm1950575"
+              }
+            ],
+            "runtime":"96 min",
+            "urlPoster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMTUxNjg1ODY3Ml5BMl5BanBnXkFtZTgwODEyNjUzOTE@._V1_UX182_CR0,0,182,268_AL_.jpg",
+            "countries":[
+              "USA"
+            ],
+            "languages":[
+              "English"
+            ],
+            "genres":[
+              "Drama"
+            ],
+            "plot":"Reeling from a terrifying assault, a 19 year-old boy enrolls into college with his brother and pledges the same fraternity. What happens there, in the name of \"brotherhood,\" tests the boy and his loyalty to his brother in brutal ways.",
+            "simplePlot":"Reeling from a terrifying assault, a 19 year-old boy enrolls into college with his brother and pledges the same fraternity. What happens there, in the name of \"brotherhood,\" tests the boy and his loyalty to his brother in brutal ways.",
+            "idIMDB":"tt4437216",
+            "urlIMDB":"http://www.imdb.com/title/tt4437216",
+            "rating":"5.7",
+            "metascore":"69",
+            "rated":"R",
+            "votes":"455",
+            "type":"Movie"
+          },
+          {
+            "title":"The Lovers and the Despot",
+            "originalTitle":"",
+            "year":"2016",
+            "releaseDate":"20160923",
+            "directors":[
+              {
+                "name":"Ross Adam",
+                "id":"nm5366685"
+              },
+              {
+                "name":"Robert Cannan",
+                "id":"nm1930956"
+              }
+            ],
+            "writers":[
+              {
+                "name":"Ross Adam",
+                "id":"nm5366685"
+              },
+              {
+                "name":"Robert Cannan",
+                "id":"nm1930956"
+              }
+            ],
+            "runtime":"98 min",
+            "urlPoster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMTUzNTQ3MjA4N15BMl5BanBnXkFtZTgwNzQxODAyOTE@._V1_UX182_CR0,0,182,268_AL_.jpg",
+            "countries":[
+              "UK"
+            ],
+            "languages":[
+              "Korean",
+              "Japanese",
+              "English"
+            ],
+            "genres":[
+              "Documentary",
+              "Thriller"
+            ],
+            "plot":"After the collapse of their glamorous romance, a famous director and actress are kidnapped by movie-obsessed dictator Kim Jong-il. Forced to make films in the world's weirdest state, they get a second chance at love, but only one chance at escape.",
+            "simplePlot":"After the collapse of their glamorous romance, a famous director and actress are kidnapped by movie-obsessed dictator Kim Jong-il. Forced to make films in the world's weirdest state, they get a second chance at love, but only one chance at escape.",
+            "idIMDB":"tt5278868",
+            "urlIMDB":"http://www.imdb.com/title/tt5278868",
+            "rating":"6.6",
+            "metascore":"66",
+            "votes":"100",
+            "type":"Movie"
+          },
+          {
+            "title":"The Dressmaker",
+            "originalTitle":"",
+            "year":"2015",
+            "releaseDate":"20160923",
+            "directors":[
+              {
+                "name":"Jocelyn Moorhouse",
+                "id":"nm0602104"
+              }
+            ],
+            "writers":[
+              {
+                "name":"Rosalie Ham",
+                "id":"nm5672426"
+              },
+              {
+                "name":"P.J. Hogan",
+                "id":"nm0389591"
+              }
+            ],
+            "runtime":"118 min",
+            "urlPoster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMjA4MzAxNTc5OF5BMl5BanBnXkFtZTgwMjgzMDE4OTE@._V1_UX182_CR0,0,182,268_AL_.jpg",
+            "countries":[
+              "Australia"
+            ],
+            "languages":[
+              "English"
+            ],
+            "genres":[
+              "Drama"
+            ],
+            "plot":"Based on Rosalie Ham's best selling novel, The Dressmaker is the story of femme fatale Tilly Dunnage who returns to her small home town in the country to right the wrongs of the past. A stylish drama with comic undertones about love, revenge and haute couture.",
+            "simplePlot":"A glamorous woman returns to her small town in rural Australia. With her sewing machine and haute couture style, she transforms the women and exacts sweet revenge on those who did her wrong.",
+            "idIMDB":"tt2910904",
+            "urlIMDB":"http://www.imdb.com/title/tt2910904",
+            "rating":"7.1",
+            "metascore":"44",
+            "rated":"R",
+            "votes":"22,758",
+            "type":"Movie"
+          },
+          {
+            "title":"My Blind Brother",
+            "originalTitle":"",
+            "year":"2016",
+            "releaseDate":"20160919",
+            "directors":[
+              {
+                "name":"Sophie Goodhart",
+                "id":"nm1054899"
+              }
+            ],
+            "writers":[
+              {
+                "name":"Sophie Goodhart",
+                "id":"nm1054899"
+              }
+            ],
+            "runtime":"85 min",
+            "urlPoster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMTczNDE2NTk5N15BMl5BanBnXkFtZTgwMDMxOTM4OTE@._V1_UY268_CR2,0,182,268_AL_.jpg",
+            "countries":[
+              "USA"
+            ],
+            "languages":[
+              "English"
+            ],
+            "genres":[
+              "Comedy",
+              "Drama",
+              "Romance"
+            ],
+            "plot":"The rivalry between two brothers reaches a fever pitch during a charity swim competition.",
+            "simplePlot":"The rivalry between two brothers reaches a fever pitch during a charity swim competition.",
+            "idIMDB":"tt4550420",
+            "urlIMDB":"http://www.imdb.com/title/tt4550420",
+            "rating":"6.7",
+            "rated":"R",
+            "votes":"113",
+            "type":"Movie"
+          }
+        ]
+      },
+      {
+
+        "hospitals":[
+          {
+            "title":"Bridget Jones's Baby",
+            "originalTitle":"",
+            "year":"2016",
+            "releaseDate":"20160916",
+            "directors":[
+              {
+                "name":"Sharon Maguire",
+                "id":"nm0536632"
+              }
+            ],
+            "writers":[
+              {
+                "name":"Helen Fielding",
+                "id":"nm0276144"
+              },
+              {
+                "name":"Dan Mazer",
+                "id":"nm0563243"
+              }
+            ],
+            "runtime":"122 min",
+            "urlPoster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMjQyMTI0MjIyOV5BMl5BanBnXkFtZTgwMzEyMjQ1ODE@._V1_UX182_CR0,0,182,268_AL_.jpg",
+            "countries":[
+              "Ireland",
+              "UK",
+              "France",
+              "USA"
+            ],
+            "languages":[
+              "English"
+            ],
+            "genres":[
+              "Comedy",
+              "Romance"
+            ],
+            "plot":"Bridget's focus on single life and her career is interrupted when she finds herself pregnant, but with one hitch ... she can only be fifty percent sure of the identity of her baby's father.",
+            "simplePlot":"Bridget's focus on single life and her career is interrupted when she finds herself pregnant, but with one hitch ... she can only be fifty percent sure of the identity of her baby's father.",
+            "idIMDB":"tt1473832",
+            "urlIMDB":"http://www.imdb.com/title/tt1473832",
+            "rating":"6.6",
+            "metascore":"67",
+            "rated":"R",
+            "votes":"402",
+            "type":"Movie"
+          },
+          {
+            "title":"Snowden",
+            "originalTitle":"",
+            "year":"2016",
+            "releaseDate":"20160916",
+            "directors":[
+              {
+                "name":"Oliver Stone",
+                "id":"nm0000231"
+              }
+            ],
+            "writers":[
+              {
+                "name":"Kieran Fitzgerald",
+                "id":"nm1634307"
+              },
+              {
+                "name":"Oliver Stone",
+                "id":"nm0000231"
+              }
+            ],
+            "runtime":"134 min",
+            "urlPoster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMTg2MzYzNzgzOF5BMl5BanBnXkFtZTgwOTg4NzQ4OTE@._V1_UX182_CR0,0,182,268_AL_.jpg",
+            "countries":[
+              "France",
+              "Germany",
+              "USA"
+            ],
+            "languages":[
+              "English"
+            ],
+            "genres":[
+              "Biography",
+              "Drama",
+              "Thriller"
+            ],
+            "plot":"SNOWDEN stars Joseph Gordon-Levitt and is written and directed by Oliver Stone. The script is based on the books The Snowden Files: The Inside Story of the World's Most Wanted Man by Luke Harding and Time of the Octopus by Anatoly Kucherena.",
+            "simplePlot":"The NSA's illegal surveillance techniques are leaked to the public by one of the agency's employees, , in the form of thousands of classified documents distributed to the press.",
+            "idIMDB":"tt3774114",
+            "urlIMDB":"http://www.imdb.com/title/tt3774114",
+            "rating":"6.3",
+            "metascore":"59",
+            "rated":"R",
+            "votes":"1,029",
+            "type":"Movie"
+          },
+          {
+            "title":"Blair Witch",
+            "originalTitle":"",
+            "year":"2016",
+            "releaseDate":"20160916",
+            "directors":[
+              {
+                "name":"Adam Wingard",
+                "id":"nm1417392"
+              }
+            ],
+            "writers":[
+              {
+                "name":"Simon Barrett",
+                "id":"nm1440023"
+              }
+            ],
+            "runtime":"89 min",
+            "urlPoster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMjY5NDE2OTk3NF5BMl5BanBnXkFtZTgwMTE5MDY5OTE@._V1_UX182_CR0,0,182,268_AL_.jpg",
+            "countries":[
+              "USA"
+            ],
+            "languages":[
+              "English"
+            ],
+            "genres":[
+              "Horror",
+              "Thriller"
+            ],
+            "plot":"After discovering a video showing what he believes to be his sister's experiences in the demonic woods of the Blair Witch, James and a group of friends head to the forest in search of his lost sibling.",
+            "simplePlot":"After discovering a video showing what he believes to be his sister's experiences in the demonic woods of the Blair Witch, James and a group of friends head to the forest in search of his lost sibling.",
+            "idIMDB":"tt1540011",
+            "urlIMDB":"http://www.imdb.com/title/tt1540011",
+            "rating":"5.9",
+            "metascore":"54",
+            "rated":"R",
+            "votes":"720",
+            "type":"Movie"
+          },
+          {
+            "title":"Sully",
+            "originalTitle":"",
+            "year":"2016",
+            "releaseDate":"20160909",
+            "directors":[
+              {
+                "name":"Clint Eastwood",
+                "id":"nm0000142"
+              }
+            ],
+            "writers":[
+              {
+                "name":"Todd Komarnicki",
+                "id":"nm0464548"
+              },
+              {
+                "name":"Chesley Sullenberger",
+                "id":"nm3314810"
+              }
+            ],
+            "runtime":"96 min",
+            "urlPoster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMTg5NTUwNDIyOV5BMl5BanBnXkFtZTgwMjI2OTc3OTE@._V1_UX182_CR0,0,182,268_AL_.jpg",
+            "countries":[
+              "USA"
+            ],
+            "languages":[
+              "English"
+            ],
+            "genres":[
+              "Biography",
+              "Drama"
+            ],
+            "plot":"On Thursday, January 15th, 2009, the world witnessed the \"Miracle on the Hudson\" when Captain , nicknamed \"Sully\" & is portrayed by glided his disabled plane onto the frigid waters of the Hudson River, saving the lives of all 155 aboard. However, even as Sully was being heralded by the public and the media for his unprecedented feat of aviation skill, an investigation was unfolding that threatened to destroy his reputation and his career.",
+            "simplePlot":"The story of , who became a hero after gliding his plane along the water in the Hudson River, saving all of the airplane flights 155 crew and passengers.",
+            "idIMDB":"tt3263904",
+            "urlIMDB":"http://www.imdb.com/title/tt3263904",
+            "rating":"8.0",
+            "metascore":"75",
+            "rated":"PG-13",
+            "votes":"12,157",
+            "type":"Movie"
+          },
+          {
+            "title":"Don't Breathe",
+            "originalTitle":"",
+            "year":"2016",
+            "releaseDate":"20160826",
+            "directors":[
+              {
+                "name":"Fede Alvarez",
+                "id":"nm1793079"
+              }
+            ],
+            "writers":[
+              {
+                "name":"Fede Alvarez",
+                "id":"nm1793079"
+              },
+              {
+                "name":"Rodo Sayagues",
+                "id":"nm2140186"
+              }
+            ],
+            "runtime":"88 min",
+            "urlPoster":"https://images-na.ssl-images-amazon.com/images/M/MV5BZGI5ZTU2M2YtZWY4MC00ZDFhLTliYTItZTk1NjdlN2NkMzg2XkEyXkFqcGdeQXVyMjY5ODI4NDk@._V1_UX182_CR0,0,182,268_AL_.jpg",
+            "countries":[
+              "USA"
+            ],
+            "languages":[
+              "English"
+            ],
+            "genres":[
+              "Horror",
+              "Thriller"
+            ],
+            "plot":"Rocky, a young woman wanting to start a better life for her and her sister, agrees to take part in the robbery of a house owned by a wealthy blind man with her boyfriend Money and their friend Alex. But when the blind man turns out to be a more than he seems, the group must find a way to escape his home before they become his newest victims.",
+            "simplePlot":"Hoping to walk away with a massive fortune, a trio of thieves break into the house of a blind man who isn't as helpless as he seems.",
+            "idIMDB":"tt4160708",
+            "urlIMDB":"http://www.imdb.com/title/tt4160708",
+            "rating":"7.6",
+            "metascore":"71",
+            "rated":"R",
+            "votes":"22,292",
+            "type":"Movie"
+          },
+          {
+            "title":"Suicide Squad",
+            "originalTitle":"",
+            "year":"2016",
+            "releaseDate":"20160805",
+            "directors":[
+              {
+                "name":"David Ayer",
+                "id":"nm0043742"
+              }
+            ],
+            "writers":[
+              {
+                "name":"David Ayer",
+                "id":"nm0043742"
+              }
+            ],
+            "runtime":"123 min",
+            "urlPoster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMjM1OTMxNzUyM15BMl5BanBnXkFtZTgwNjYzMTIzOTE@._V1_UX182_CR0,0,182,268_AL_.jpg",
+            "countries":[
+              "USA"
+            ],
+            "languages":[
+              "English",
+              "Japanese",
+              "Spanish"
+            ],
+            "genres":[
+              "Action",
+              "Adventure",
+              "Crime",
+              "Fantasy",
+              "Sci-Fi"
+            ],
+            "plot":"It feels good to be bad...Assemble a team of the world's most dangerous, incarcerated Super Villains, provide them with the most powerful arsenal at the government's disposal, and send them off on a mission to defeat an enigmatic, insuperable entity. U.S. intelligence officer Amanda Waller has determined only a secretly convened group of disparate, despicable individuals with next to nothing to lose will do. However, once they realize they weren't picked to succeed but chosen for their patent culpability when they inevitably fail, will the Suicide Squad resolve to die trying, or decide it's every man for himself?",
+            "simplePlot":"A secret government agency recruits some of the most dangerous incarcerated criminals to form a defensive task force, with their first case leading to a potential apocalypse.",
+            "idIMDB":"tt1386697",
+            "urlIMDB":"http://www.imdb.com/title/tt1386697",
+            "rating":"6.7",
+            "metascore":"40",
+            "rated":"PG-13",
+            "votes":"208,940",
+            "type":"Movie"
+          },
+          {
+            "title":"When the Bough Breaks",
+            "originalTitle":"",
+            "year":"2016",
+            "releaseDate":"20160909",
+            "directors":[
+              {
+                "name":"Jon Cassar",
+                "id":"nm0143984"
+              }
+            ],
+            "writers":[
+              {
+                "name":"Jack Olsen",
+                "id":"nm3357261"
+              },
+              {
+                "name":"Jack Olsen",
+                "id":"nm3357261"
+              }
+            ],
+            "runtime":"107 min",
+            "urlPoster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMTc4MTk3Mzk4NV5BMl5BanBnXkFtZTgwMDgzNDUyOTE@._V1_UX182_CR0,0,182,268_AL_.jpg",
+            "countries":[
+              "USA"
+            ],
+            "languages":[
+              "English"
+            ],
+            "genres":[
+              "Drama",
+              "Horror",
+              "Mystery",
+              "Thriller"
+            ],
+            "plot":"John and Laura Taylor (Morris Chestnut and Regina Hall) are a young, professional couple who desperately want a baby. After exhausting all other options, they finally hire Anna (Jaz Sinclair), the perfect woman to be their surrogate - but as she gets further along in her pregnancy, so too does her psychotic and dangerous fixation on the husband. The couple becomes caught up in Anna's deadly game and must fight to regain control of their future before it's too late.",
+            "simplePlot":"A surrogate mom for a couple becomes dangerously obsessed with the soon-to-be father.",
+            "idIMDB":"tt1389139",
+            "urlIMDB":"http://www.imdb.com/title/tt1389139",
+            "rating":"4.2",
+            "metascore":"30",
+            "rated":"PG-13",
+            "votes":"486",
+            "type":"Movie"
+          },
+          {
+            "title":"The Wild Life",
+            "originalTitle":"Robinson Crusoe",
+            "year":"2016",
+            "releaseDate":"20160909",
+            "directors":[
+              {
+                "name":"Vincent Kesteloot",
+                "id":"nm1062463"
+              },
+              {
+                "name":"Ben Stassen",
+                "id":"nm0823721"
+              }
+            ],
+            "writers":[
+
+            ],
+            "runtime":"91 min",
+            "urlPoster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMjA4OTE0MjAwNl5BMl5BanBnXkFtZTgwMjY4Mzg2OTE@._V1_UX182_CR0,0,182,268_AL_.jpg",
+            "countries":[
+              "Belgium",
+              "France"
+            ],
+            "languages":[
+              "English",
+              "French",
+              "German"
+            ],
+            "genres":[
+              "Animation",
+              "Adventure",
+              "Comedy",
+              "Family"
+            ],
+            "plot":"On a tiny exotic island, Tuesday, an outgoing parrot lives with his quirky animal friends in paradise. However, Tuesday can't stop dreaming about discovering the world. After a violent storm, Tuesday and his friends wake up to find a strange creature on the beach: Robinson Crusoe. Tuesday immediately views Crusoe as his ticket off the island to explore new lands. Likewise, Crusoe soon realizes that the key to surviving on the island is through the help of Tuesday and the other animals. It isn't always easy at first, as the animals don't speak \"human.\" Slowly but surely, they all start living together in harmony, until one day, when their comfortable life is overturned by two savage cats, who wish to take control of the island. A battle ensues between the cats and the group of friends but Crusoe and the animals soon discover the true power of friendship up against all odds (even savage cats).",
+            "simplePlot":"A daring parrot recounts how Robinson Crusoe came to be stranded on a tropical island.",
+            "idIMDB":"tt4731008",
+            "urlIMDB":"http://www.imdb.com/title/tt4731008",
+            "rating":"5.3",
+            "metascore":"36",
+            "rated":"PG",
+            "votes":"1,737",
+            "type":"Movie"
+          },
+          {
+            "title":"Kubo and the Two Strings",
+            "originalTitle":"",
+            "year":"2016",
+            "releaseDate":"20160819",
+            "directors":[
+              {
+                "name":"Travis Knight",
+                "id":"nm1325899"
+              }
+            ],
+            "writers":[
+              {
+                "name":"Marc Haimes",
+                "id":"nm1199351"
+              },
+              {
+                "name":"Chris Butler",
+                "id":"nm2752098"
+              }
+            ],
+            "runtime":"101 min",
+            "urlPoster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMjA2Mzg2NDMzNl5BMl5BanBnXkFtZTgwMjcwODUzOTE@._V1_UX182_CR0,0,182,268_AL_.jpg",
+            "countries":[
+              "USA"
+            ],
+            "languages":[
+              "English"
+            ],
+            "genres":[
+              "Animation",
+              "Adventure",
+              "Family",
+              "Fantasy"
+            ],
+            "plot":"Kubo lives a quiet, normal life in a small shoreside village until a spirit from the past turns his life upside down by re-igniting an age-old vendetta. This causes all sorts of havoc as gods and monsters chase Kubo who, in order to survive, must locate a magical suit of armor once worn by his late father, a legendary Samurai warrior.",
+            "simplePlot":"A young boy named Kubo must locate a magical suit of armor worn by his late father in order to defeat a vengeful spirit from the past.",
+            "idIMDB":"tt4302938",
+            "urlIMDB":"http://www.imdb.com/title/tt4302938",
+            "rating":"8.3",
+            "metascore":"84",
+            "rated":"PG",
+            "votes":"10,683",
+            "type":"Movie"
+          },
+          {
+            "title":"Pete's Dragon",
+            "originalTitle":"",
+            "year":"2016",
+            "releaseDate":"20160812",
+            "directors":[
+              {
+                "name":"David Lowery",
+                "id":"nm1108007"
+              }
+            ],
+            "writers":[
+              {
+                "name":"David Lowery",
+                "id":"nm1108007"
+              },
+              {
+                "name":"Toby Halbrooks",
+                "id":"nm2021909"
+              }
+            ],
+            "runtime":"103 min",
+            "urlPoster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMjA4NDYxNzYzOF5BMl5BanBnXkFtZTgwNzU1NzcwODE@._V1_UX182_CR0,0,182,268_AL_.jpg",
+            "countries":[
+              "USA"
+            ],
+            "languages":[
+              "English"
+            ],
+            "genres":[
+              "Adventure",
+              "Family",
+              "Fantasy"
+            ],
+            "plot":"Pete , a boy is found in a forest. Apparently he;s been living there for 6 years after an accident took his parents. A ranger named, Grace decides to take him in and when she asks him how he survived all by himself, he says he had a friend, Elliot with him. He draws a picture of Elliot and it's a picture of a dragon. Grace takes the picture to her father who claims that years ago, he encountered a dragon in the forest. Grace takes Pete back to the forest and he shows them where he lives and Elliot. A man who saw Elliot and when he tells about his experience and is not believed, he sets out to prove it by capturing the dragon.",
+            "simplePlot":"The adventures of an orphaned boy named Pete and his best friend Elliot, who just so happens to be a dragon.",
+            "idIMDB":"tt2788732",
+            "urlIMDB":"http://www.imdb.com/title/tt2788732",
+            "rating":"7.3",
+            "metascore":"71",
+            "rated":"PG",
+            "votes":"6,700",
+            "type":"Movie"
+          }
+        ]
+      }
+    ]
+  }
+}

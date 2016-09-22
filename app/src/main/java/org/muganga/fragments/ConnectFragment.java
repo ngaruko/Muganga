@@ -1,4 +1,4 @@
-package org.muganga.activities;
+package org.muganga.fragments;
 
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -16,11 +16,15 @@ import com.google.android.gms.common.SignInButton;
 
 import org.muganga.Logs.Logger;
 import org.muganga.R;
+import org.muganga.activities.FirebaseActivity;
+import org.muganga.activities.LocationsActivity;
+import org.muganga.activities.MapsActivity;
+import org.muganga.activities.NotificationActivity;
 
 /**
  * This is the home fragment. Need to think of contents.
  */
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class ConnectFragment extends Fragment implements View.OnClickListener {
     public static final int STATE_SIGNED_IN = 0;
     public static final int STATE_SIGN_IN = 1;
     // TODO: Rename parameter arguments, choose names that match
@@ -49,11 +53,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
 
 
-    public HomeFragment() {
+    public ConnectFragment() {
     }
 
     public static Fragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
+        ConnectFragment fragment = new ConnectFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -241,7 +245,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     public void setSignedIn(boolean signedIn) {
-        HomeFragment.signedIn = signedIn;
+        ConnectFragment.signedIn = signedIn;
     }
 }
 

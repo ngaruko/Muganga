@@ -20,7 +20,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class SearchMoviesTask extends AsyncTask<String, Void, Void> {
+public class SearchItemsTask extends AsyncTask<String, Void, Void> {
 
     public JSONArray response;
     private VolleySingleton volleySingleton;
@@ -30,7 +30,7 @@ public class SearchMoviesTask extends AsyncTask<String, Void, Void> {
     private JSONObject mResponse;
 
 
-    public SearchMoviesTask(ItemsFoundListener myComponent, Context context) {
+    public SearchItemsTask(ItemsFoundListener myComponent, Context context) {
         this.myComponent = myComponent;
         this.mContext = context;
         volleySingleton = VolleySingleton.getInstance();

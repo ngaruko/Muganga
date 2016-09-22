@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -23,23 +24,26 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import org.muganga.activities.HomeFragment;
+import org.muganga.Logs.Logger;
 import org.muganga.activities.GlobalSearchActivity;
-import org.muganga.fragments.ContactFragment;
 import org.muganga.fragments.AskDoctorFragment;
+import org.muganga.fragments.ChatFragment;
+import org.muganga.fragments.ChatMessageFragment;
+import org.muganga.fragments.ConnectFragment;
 import org.muganga.fragments.LocationsFragment;
+import org.muganga.fragments.dummy.DummyContent;
 import org.muganga.services.MoviesService;
 import org.muganga.tabs.SlidingTabLayout;
 import org.muganga.utilities.LogHelper;
 import org.muganga.utilities.SortListener;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ChatMessageFragment.OnListFragmentInteractionListener, ChatFragment.OnFragmentInteractionListener {
 
 
     public static final int TAB_HOME = 0;
-    public static final int TAB_ASK_DOCTOR = 1;
-    public static final int TAB_LOCATIONS = 2;
+    public static final int TAB_ASK_DOCTOR = 2;
+    public static final int TAB_LOCATIONS = 1;
 
     public static final int TAB_CONTACT = 3;
 
@@ -296,6 +300,16 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+        Logger.longToast("Some change");
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+        Logger.longToast("Some change");
+    }
+
 
     //Construct an adapter
 
@@ -320,13 +334,8 @@ public class MainActivity extends AppCompatActivity {
             switch (position) {
 
                 case TAB_HOME:
-                    fragment = HomeFragment.newInstance("", "");
-
-                    break;
-
-
-                case TAB_ASK_DOCTOR:
                     fragment = AskDoctorFragment.newInstance("", "");
+
                     break;
 
                 case TAB_LOCATIONS:
@@ -335,8 +344,14 @@ public class MainActivity extends AppCompatActivity {
 
                     break;
 
+                case TAB_ASK_DOCTOR:
+                    //fragment = ChatMessageFragment.newInstance(1);
+                    fragment = ChatFragment.newInstance("","");
+                    break;
+
+
                 case TAB_CONTACT:
-                    fragment = ContactFragment.newInstance("", "");
+                    fragment = ConnectFragment.newInstance("", "");
 
                     break;
 
