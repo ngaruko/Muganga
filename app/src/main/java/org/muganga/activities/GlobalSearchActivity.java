@@ -30,7 +30,7 @@ public class GlobalSearchActivity extends AppCompatActivity implements ItemLoade
         }
 
 
-        setContentView(R.layout.activity_movie_search);
+        //setContentView(R.layout.activity_movie_search);
 
 
     }

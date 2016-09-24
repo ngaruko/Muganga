@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.muganga.R;
-import org.muganga.adapters.AdapterTopMovies;
+import org.muganga.adapters.AdapterEntities;
 import org.muganga.data.MovieLoader;
 import org.muganga.services.MoviesService;
 import org.muganga.utilities.MovieSorter;
@@ -93,7 +93,7 @@ public class LocationsFragment extends Fragment implements LoaderManager.LoaderC
 
         if (isAdded()) {
             Log.d("Loading....", "Top movies!");
-            AdapterTopMovies adapter = new AdapterTopMovies(cursor, getActivity());
+            AdapterEntities adapter = new AdapterEntities(cursor, getActivity());
             adapter.setHasStableIds(true);
             try {
                 mRecyclerView.setAdapter(adapter);

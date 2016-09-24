@@ -7,13 +7,13 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
@@ -27,7 +27,7 @@ import org.muganga.data.TopMovieLoader;
 import org.muganga.utilities.Constants;
 
 
-public class AdapterFoundMovies extends RecyclerView.Adapter<AdapterFoundMovies.ViewHolderMovies> {
+public class AdapterEntities extends RecyclerView.Adapter<AdapterEntities.ViewHolderMovies> {
     private Cursor mCursor;
     private LayoutInflater mLayoutInflater;
 
@@ -36,7 +36,7 @@ public class AdapterFoundMovies extends RecyclerView.Adapter<AdapterFoundMovies.
     private Activity context;
 
 
-    public AdapterFoundMovies(Cursor cursor, Activity context) {
+    public AdapterEntities(Cursor cursor, Activity context) {
         this.context = context;
 
         mCursor = cursor;
@@ -65,7 +65,7 @@ public class AdapterFoundMovies extends RecyclerView.Adapter<AdapterFoundMovies.
     @Override
     public ViewHolderMovies onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = mLayoutInflater.inflate(R.layout.found_movie_item_layout, parent, false);
+        View view = mLayoutInflater.inflate(R.layout.top_movie_item_layout, parent, false);
 
         final ViewHolderMovies vh = new ViewHolderMovies(view);
 
@@ -120,11 +120,9 @@ public class AdapterFoundMovies extends RecyclerView.Adapter<AdapterFoundMovies.
 
     @Override
     public void onBindViewHolder(ViewHolderMovies holder, int position) {
-
-
-        //holder.movieThumbnail.setTransitionName("imageTransition");
-
         mCursor.moveToPosition(position);
+
+
         holder.movieTitle.setText(mCursor.getString(TopMovieLoader.Query.COLUMN_TITLE));
 
         //    holder.movieTitle.setText("TOP MOVIES");
@@ -133,13 +131,7 @@ public class AdapterFoundMovies extends RecyclerView.Adapter<AdapterFoundMovies.
         holder.movieReleaseDate.setText(mCursor.getString(TopMovieLoader.Query.COLUMN_GENRES));
         Double rating = mCursor.getDouble(TopMovieLoader.Query.COLUMN_RATING);
 
-        if (rating == -1) {
-            holder.movieRating.setRating(0.0F);
-            holder.movieRating.setAlpha(0.5F); //only 50% visible
-        } else {
-            holder.movieRating.setRating((float) (rating / 2.0F));
-            holder.movieRating.setAlpha(1.0F);
-        }
+
 
         //load url
 
@@ -174,19 +166,21 @@ public class AdapterFoundMovies extends RecyclerView.Adapter<AdapterFoundMovies.
 
     public class ViewHolderMovies extends RecyclerView.ViewHolder {
 
+        private final CardView mCardView;
         ImageView movieThumbnail;
         TextView movieTitle;
         TextView movieReleaseDate;
-        RatingBar movieRating;
+
 
 
         public ViewHolderMovies(View itemView) {
             super(itemView);
+            mCardView = (CardView) itemView;
 
             movieThumbnail = (ImageView) itemView.findViewById(R.id.movieThumbnail);
             movieTitle = (TextView) itemView.findViewById(R.id.movie_title);
             movieReleaseDate = (TextView) itemView.findViewById(R.id.movieReleaseDate);
-            movieRating = (RatingBar) itemView.findViewById(R.id.movieRating);
+
         }
     }
 }

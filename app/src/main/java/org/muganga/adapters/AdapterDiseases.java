@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
@@ -25,7 +24,7 @@ import org.muganga.data.MovieLoader;
 import org.muganga.data.MoviesContract;
 
 
-public class AdapterMoviesInTheaters extends RecyclerView.Adapter<AdapterMoviesInTheaters.ViewHolderMovies> {
+public class AdapterDiseases extends RecyclerView.Adapter<AdapterDiseases.ViewHolderMovies> {
     private Cursor mCursor;
     private LayoutInflater mLayoutInflater;
 
@@ -34,7 +33,7 @@ public class AdapterMoviesInTheaters extends RecyclerView.Adapter<AdapterMoviesI
     private Activity context;
 
 
-    public AdapterMoviesInTheaters(Cursor cursor, Activity context) {
+    public AdapterDiseases(Cursor cursor, Activity context) {
         this.context = context;
 
 
@@ -128,16 +127,9 @@ public class AdapterMoviesInTheaters extends RecyclerView.Adapter<AdapterMoviesI
         holder.movieReleaseDate.setText(mCursor.getString(MovieLoader.Query.COLUMN_GENRES));
         Double rating = mCursor.getDouble(MovieLoader.Query.COLUMN_RATING);
 
-        if (rating == -1) {
-            holder.movieRating.setRating(0.0F);
-            holder.movieRating.setAlpha(0.5F); //only 50% visible
-        } else {
-            holder.movieRating.setRating((float) (rating / 2.0F));
-            holder.movieRating.setAlpha(1.0F);
-        }
 
-
-        holder.movieThumbnail.setImageResource(R.drawable.google_plus);
+       // holder.movieThumbnail.setImageResource(R.drawable.google_plus);
+        holder.movieThumbnail.setImageResource(R.drawable.disease);
 
     }
 
@@ -154,7 +146,7 @@ public class AdapterMoviesInTheaters extends RecyclerView.Adapter<AdapterMoviesI
         ImageView movieThumbnail;
         TextView movieTitle;
         TextView movieReleaseDate;
-        RatingBar movieRating;
+        //RatingBar movieRating;
 
 
         public ViewHolderMovies(View itemView) {
@@ -163,7 +155,7 @@ public class AdapterMoviesInTheaters extends RecyclerView.Adapter<AdapterMoviesI
             movieThumbnail = (ImageView) itemView.findViewById(R.id.movieThumbnail);
             movieTitle = (TextView) itemView.findViewById(R.id.movie_title);
             movieReleaseDate = (TextView) itemView.findViewById(R.id.movieReleaseDate);
-            movieRating = (RatingBar) itemView.findViewById(R.id.movieRating);
+            //movieRating = (RatingBar) itemView.findViewById(R.id.movieRating);
         }
     }
 }

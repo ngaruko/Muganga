@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.muganga.R;
-import org.muganga.adapters.AdapterMoviesInTheaters;
+import org.muganga.adapters.AdapterDiseases;
 import org.muganga.data.MovieLoader;
 import org.muganga.services.MoviesService;
 import org.muganga.utilities.MovieSorter;
@@ -108,7 +108,7 @@ public class AskDoctorFragment extends Fragment implements LoaderManager.LoaderC
 
         if (isAdded()) {
 
-            AdapterMoviesInTheaters adapter = new AdapterMoviesInTheaters(cursor, getActivity());
+            AdapterDiseases adapter = new AdapterDiseases(cursor, getActivity());
             adapter.setHasStableIds(true);
             try {
                 mRecyclerView.setAdapter(adapter);

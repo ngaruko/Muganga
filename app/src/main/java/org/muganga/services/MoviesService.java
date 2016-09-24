@@ -2,16 +2,12 @@ package org.muganga.services;
 
 import android.app.IntentService;
 import android.content.ContentProviderOperation;
-import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.util.Log;
 
-import com.android.volley.RequestQueue;
-
-import org.muganga.VolleySingleton;
 import org.muganga.data.MoviesContract;
 import org.muganga.json.JSonParser;
 import org.muganga.utilities.DialogClass;
@@ -25,16 +21,11 @@ public class MoviesService extends IntentService {
     public static final String EXTRA_REFRESHING
             = "org.muganga.intent.extra.REFRESHING";
     private static final String TAG = "MoviesService";
-    public VolleySingleton volleySingleton;
-    public RequestQueue requestQueue;
-    public Context context;
-
 
     public MoviesService() {
         super(TAG);
 
-        volleySingleton = VolleySingleton.getInstance();
-        requestQueue = volleySingleton.getRequestQueue();
+
     }
 
 
@@ -76,10 +67,10 @@ public class MoviesService extends IntentService {
         cpoComing.add(ContentProviderOperation.newDelete(comingSoonUri).build());
 
 
-               new JSonParser(this).parseAndSaveTheatersMovies(cpoTheaters, theatersUri);
-       new JSonParser(this).parseAndSaveTheatersMovies(cpoComing, comingSoonUri);
-       new JSonParser(this).parseAndSaveTheatersMovies(cpoTop, topMoviesUri);
-        new JSonParser(this).parseAndSaveTheatersMovies(cpoBottom, bottomMoviesUri);
+              new JSonParser(this).parseMaladiesData(cpoTheaters, theatersUri);
+
+       new JSonParser(this).parseEntitiesData(cpoTop, topMoviesUri);
+
 
 
         sendStickyBroadcast(

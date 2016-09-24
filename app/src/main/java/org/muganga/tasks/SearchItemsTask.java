@@ -4,18 +4,17 @@ import android.content.ContentProviderOperation;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.android.volley.RequestQueue;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.muganga.Callbacks.ItemsFoundListener;
 import org.muganga.VolleySingleton;
 import org.muganga.data.MoviesContract;
-import org.muganga.json.JSonParser;
 import org.muganga.json.Requestor;
 import org.muganga.utilities.EndPoints;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -58,8 +57,8 @@ public class SearchItemsTask extends AsyncTask<String, Void, Void> {
         try {
             mResponse = Requestor.requestMoviesJSON(requestQueue, EndPoints.getRequestUrlFoundMovies(title, limit));
 
-            if (mResponse != null && mResponse.length() > 0)
-                new JSonParser(mContext).parseAndSaveTheatersMovies(cpo, uri, mResponse,"");
+            if (mResponse != null && mResponse.length() > 0) Log.e("Searched item: ","Found something");
+              //  new JSonParser(mContext).parseMaladiesData(cpo, uri, mResponse,"");
 
         } catch (Exception e) {
 

@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements ChatMessageFragme
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+//Todo: Too many hard coded strings that need to be initiated elsewhere, either string or constants
 
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setSharedElementEnterTransition(TransitionInflater.from(this).inflateTransition(R.transition.shared_element_transition_a));
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements ChatMessageFragme
     }
 
     private void handleSearchView(final SearchView search) {
-        search.setQueryHint("Search Movies");
+        search.setQueryHint("Hospitals, Doctors, Health Centers,Pharmacies, Etc");
         search.setSubmitButtonEnabled(true);
         //*** setOnQueryTextFocusChangeListener ***
         search.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {

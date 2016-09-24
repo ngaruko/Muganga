@@ -27,9 +27,7 @@ import static org.muganga.data.MoviesContract.CONTENT_AUTHORITY;
 import static org.muganga.data.MoviesContract.MoviesColumns.COLUMN_TITLE;
 import static org.muganga.utilities.Keys.InTheatersEndpoint.KEY_GENRES;
 import static org.muganga.utilities.Keys.InTheatersEndpoint.KEY_ID;
-import static org.muganga.utilities.Keys.InTheatersEndpoint.KEY_MOVIES;
 import static org.muganga.utilities.Keys.InTheatersEndpoint.KEY_PLOT;
-import static org.muganga.utilities.Keys.InTheatersEndpoint.KEY_RATED;
 import static org.muganga.utilities.Keys.InTheatersEndpoint.KEY_RATINGS;
 import static org.muganga.utilities.Keys.InTheatersEndpoint.KEY_RELEASE_DATE;
 import static org.muganga.utilities.Keys.InTheatersEndpoint.KEY_RUNTIME;
@@ -46,7 +44,7 @@ public class JSonParser {
 
     public VolleySingleton volleySingleton;
     public RequestQueue requestQueue;
-    private JSONObject currentMovie;
+    private JSONObject currentCondition;
 
 
     public JSonParser(Context context) {
@@ -71,7 +69,7 @@ public class JSonParser {
     }
 
     //Method that will parse the JSON file and will return a JSONObject
-    public JSONObject parseJSONData() {
+    public JSONObject parseJSONData(String jSonFile) {
         String JSONString = null;
         JSONObject JSONObject = null;
         try {
@@ -79,7 +77,7 @@ public class JSonParser {
             //open the inputStream to the file
             AssetManager assets = MainApplication.getAppContext().getAssets();
 
-            InputStream inputStream = assets.open("entities.json");
+            InputStream inputStream = assets.open(jSonFile);
 
             int sizeOfJSONFile = inputStream.available();
 
@@ -110,26 +108,27 @@ public class JSonParser {
 
 
 
-    public void parseAndSaveTheatersMovies(ArrayList<ContentProviderOperation> cpo, Uri uri) {
-        JSONObject datas = parseJSONData();
+    public void parseMaladiesData(ArrayList<ContentProviderOperation> cpo, Uri uri) {
+
         JSONObject   data= null;
-        JSONArray entities = null;
-        JSONArray healthCenters=null;
+        JSONArray diseases = null;
+        JSONArray conditions=null;
         try {
 
-            data = this.parseJSONData().getJSONObject("data");
+            data = this.parseJSONData("diseases.json").getJSONObject("data");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         try {
-            entities = data.getJSONArray("entities");
+            diseases = data.getJSONArray("diseases");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        for (int j = 0; j < entities.length(); j++) {
+        for (int j = 0; j < diseases.length(); j++) {
             try {
-                 healthCenters = ((JSONObject) entities.get(j)).getJSONArray(KEY_MOVIES);
+                 conditions = ((JSONObject) diseases.get(j)).getJSONArray("conditions");
+               // Log.e("DATA", conditions.get(0).toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -139,7 +138,7 @@ public class JSonParser {
 
 try {
 //THis will store "1" inside atomicNumber
-    for (int i = 0; i < healthCenters.length(); i++) {
+    for (int i = 0; i < conditions.length(); i++) {
 
         //Initialise all the fields
 
@@ -147,7 +146,7 @@ try {
         String id = Constants.NA;
         String released = Constants.NA;
         Double rating = -1.0;
-        String rated = Constants.NA;
+        String rated = "normal";
         String urlPoster = Constants.NA;
         String ratingString = Constants.NA;
         String runtime = Constants.NA;
@@ -155,30 +154,30 @@ try {
         String genres = "";
         String thumbnailUrl = Constants.NA;
 
-        JSONObject currentMovie = healthCenters.getJSONObject(i);
-        if (currentMovie.has(KEY_ID) && !currentMovie.isNull(KEY_ID)) {
-            id = currentMovie.getString(KEY_ID);
+         currentCondition = conditions.getJSONObject(i);
+        if (currentCondition.has(KEY_ID) && !currentCondition.isNull(KEY_ID)) {
+            id = currentCondition.getString(KEY_ID);
         }
-        released = currentMovie.getString(KEY_RELEASE_DATE);
+        released = currentCondition.getString(KEY_RELEASE_DATE);
         int releaseDate = 0;
         releaseDate = Integer.parseInt(released);
 
-        if (currentMovie.has(KEY_TITLE) && !currentMovie.isNull(KEY_TITLE)) {
-            title = currentMovie.getString(KEY_TITLE);
+        if (currentCondition.has(KEY_TITLE) && !currentCondition.isNull(KEY_TITLE)) {
+            title = currentCondition.getString(KEY_TITLE);
 
 
         }
-        if (currentMovie.has(KEY_RUNTIME) && !currentMovie.isNull(KEY_RUNTIME) && currentMovie.length() >= 1) {
+        if (currentCondition.has(KEY_RUNTIME) && !currentCondition.isNull(KEY_RUNTIME) && currentCondition.length() >= 1) {
             try {
-                runtime = currentMovie.getJSONArray(KEY_RUNTIME).get(0).toString();
+                runtime = currentCondition.getJSONArray(KEY_RUNTIME).get(0).toString();
             } catch (JSONException e) {
                 Log.d("Parse error", e.getMessage());
             }
         }
-        if (currentMovie.has(KEY_GENRES) && !currentMovie.isNull(KEY_GENRES)) {
+        if (currentCondition.has(KEY_GENRES) && !currentCondition.isNull(KEY_GENRES)) {
 
 
-            JSONArray genresArray = currentMovie.getJSONArray(KEY_GENRES);
+            JSONArray genresArray = currentCondition.getJSONArray(KEY_GENRES);
             if (genresArray.length() == 0) return;
             if (genresArray.length() == 1)
                 genres = genresArray.get(0).toString();
@@ -201,11 +200,12 @@ try {
         }
 
 
-        rated = currentMovie.getString(KEY_RATED);
-        plot = currentMovie.getString(KEY_PLOT);
-        urlPoster = currentMovie.getString(KEY_URLPOSTER);
-        if (currentMovie.has(KEY_RATINGS) && !currentMovie.isNull(KEY_RATINGS)) {
-            ratingString = currentMovie.getString(KEY_RATINGS);
+        rated = "normal";//currentCondition.getString(KEY_RATED);
+        plot = currentCondition.getString(KEY_PLOT);
+        urlPoster = "http://creativebits.org/files/B_hazard.gif";
+        //currentCondition.getString(KEY_URLPOSTER);
+        if (currentCondition.has(KEY_RATINGS) && !currentCondition.isNull(KEY_RATINGS)) {
+            ratingString = currentCondition.getString(KEY_RATINGS);
         }
         rating = getRating(ratingString);
 
@@ -231,8 +231,8 @@ try {
 
     }
     context.getContentResolver().applyBatch(CONTENT_AUTHORITY, cpo);
-}catch (Exception e){
-    //dooo
+}catch  (JSONException | RemoteException | OperationApplicationException e) {
+            Log.d("Error updating content.", "Error updating content.", e);
 }
 
 
@@ -240,132 +240,135 @@ try {
     }
 
 
+    public void parseEntitiesData(ArrayList<ContentProviderOperation> cpo, Uri uri) {
 
-    public void parseAndSaveTheatersMovies(ArrayList<ContentProviderOperation> cpo, Uri uri, JSONObject response, String filter) {
+        JSONObject   data= null;
+        JSONArray entities = null;
+        JSONArray centers=null;
+        try {
 
+            data = this.parseJSONData("entities.json").getJSONObject("data");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-
-
-        //Log.d(" RESPONSE BODY", String.valueOf(body.length()));
+        try {
+            entities = data.getJSONArray("entities");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        for (int j = 0; j < entities.length(); j++) {
             try {
-                JSONArray intheaters;
+                centers = ((JSONObject) entities.get(j)).getJSONArray("healthCenters");
 
-
-                JSONArray healthCenters=null;
-                JSONObject data;
-                if (response.has("data")) {
-                    data=response.getJSONObject("data");
-                    intheaters = data.getJSONArray("inTheaters");
-                    for (int j = 0; j < intheaters.length(); j++) {
-                  healthCenters=((JSONObject)intheaters.get(j)).getJSONArray(KEY_MOVIES);}
-                }
-
-
-
-
-                Log.d("Movies ", String.valueOf(healthCenters.length()));
-                for (int i = 0; i < healthCenters.length(); i++) {
-
-                    //Initialise all the fields
-
-                    String title = Constants.NA;
-                    String id = Constants.NA;
-                    String released = Constants.NA;
-                    Double rating = -1.0;
-                    String rated = Constants.NA;
-                    String urlPoster = Constants.NA;
-                    String ratingString = Constants.NA;
-                    String runtime = Constants.NA;
-                    String plot = Constants.NA;
-                    String genres = "";
-                    String thumbnailUrl = Constants.NA;
-
-                    JSONObject currentMovie = healthCenters.getJSONObject(i);
-                    if (currentMovie.has(KEY_ID) && !currentMovie.isNull(KEY_ID)) {
-                        id = currentMovie.getString(KEY_ID);
-                    }
-                    released = currentMovie.getString(KEY_RELEASE_DATE);
-                    int releaseDate = 0;
-                    releaseDate = Integer.parseInt(released);
-
-                    if (currentMovie.has(KEY_TITLE) && !currentMovie.isNull(KEY_TITLE)) {
-                        title = currentMovie.getString(KEY_TITLE);
-
-
-                    }
-                    if (currentMovie.has(KEY_RUNTIME) && !currentMovie.isNull(KEY_RUNTIME) && currentMovie.length() >= 1) {
-                        try {
-                            runtime = currentMovie.getJSONArray(KEY_RUNTIME).get(0).toString();
-                        } catch (JSONException e) {
-                            Log.d("Parse error", e.getMessage());
-                        }
-                    }
-                    if (currentMovie.has(KEY_GENRES) && !currentMovie.isNull(KEY_GENRES)) {
-
-
-                        JSONArray genresArray = currentMovie.getJSONArray(KEY_GENRES);
-                        if (genresArray.length() == 0) return;
-                        if (genresArray.length() == 1)
-                            genres = genresArray.get(0).toString();
-
-
-                        else {
-                            String addGenres = null;
-
-
-                            for (int g = 1; g < genresArray.length(); g++) {
-                                addGenres = ", " + genresArray.get(g).toString();
-
-                            }
-
-
-                            genres = genresArray.get(0) + addGenres;
-                        }
-
-
-                    }
-
-
-                    rated = currentMovie.getString(KEY_RATED);
-                    plot = currentMovie.getString(KEY_PLOT);
-                    urlPoster = currentMovie.getString(KEY_URLPOSTER);
-                    if (currentMovie.has(KEY_RATINGS) && !currentMovie.isNull(KEY_RATINGS)) {
-                        ratingString = currentMovie.getString(KEY_RATINGS);
-                    }
-                    rating = getRating(ratingString);
-
-
-
-                    //INSERT THIS TO DB
-                    ContentValues values = new ContentValues();
-
-                    values.put(COLUMN_TITLE, title);
-                    values.put(MoviesContract.MoviesColumns.COLUMN_IMDB_ID, id);
-                    values.put(MoviesContract.MoviesColumns.COLUMN_PLOT, plot);
-                    values.put(MoviesContract.MoviesColumns.COLUMN_RATED, rated);
-                    values.put(MoviesContract.MoviesColumns.COLUMN_RATING, rating);
-                    values.put(MoviesContract.MoviesColumns.COLUMN_RELEASE_DATE, releaseDate);
-                    values.put(MoviesContract.MoviesColumns.COLUMN_URL_THUMBNAIL, urlPoster);
-                    values.put(MoviesContract.MoviesColumns.COLUMN_GENRES, genres);
-                    values.put(MoviesContract.MoviesColumns.COLUMN_RUNTIME, runtime);
-
-                    if (!title.equals(Constants.NA)) {
-                        cpo.add(ContentProviderOperation.newInsert(uri).withValues(values).build());
-
-
-                    }
-
-                }
-                context.getContentResolver().applyBatch(CONTENT_AUTHORITY, cpo);
-            } catch (JSONException | RemoteException | OperationApplicationException e) {
-                Log.d("Error updating content.", "Error updating content.", e);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-            //}
+        }
 
+//Get the JSON object from the data
+
+        try {
+//THis will store "1" inside atomicNumber
+            for (int i = 0; i < centers.length(); i++) {
+
+                //Initialise all the fields
+
+                String title = Constants.NA;
+                String id = Constants.NA;
+                String released = Constants.NA;
+                Double rating = -1.0;
+                String rated = "normal";
+                String urlPoster = Constants.NA;
+                String ratingString = Constants.NA;
+                String runtime = Constants.NA;
+                String plot = Constants.NA;
+                String genres = "";
+                String thumbnailUrl = Constants.NA;
+
+                currentCondition = centers.getJSONObject(i);
+                if (currentCondition.has(KEY_ID) && !currentCondition.isNull(KEY_ID)) {
+                    id = currentCondition.getString(KEY_ID);
+                }
+                released = currentCondition.getString(KEY_RELEASE_DATE);
+                int releaseDate = 0;
+                releaseDate = Integer.parseInt(released);
+
+                if (currentCondition.has(KEY_TITLE) && !currentCondition.isNull(KEY_TITLE)) {
+                    title = currentCondition.getString(KEY_TITLE);
+
+
+                }
+                if (currentCondition.has(KEY_RUNTIME) && !currentCondition.isNull(KEY_RUNTIME) && currentCondition.length() >= 1) {
+                    try {
+                        runtime = currentCondition.getJSONArray(KEY_RUNTIME).get(0).toString();
+                    } catch (JSONException e) {
+                        Log.d("Parse error", e.getMessage());
+                    }
+                }
+                if (currentCondition.has(KEY_GENRES) && !currentCondition.isNull(KEY_GENRES)) {
+
+
+                    JSONArray genresArray = currentCondition.getJSONArray(KEY_GENRES);
+                    if (genresArray.length() == 0) return;
+                    if (genresArray.length() == 1)
+                        genres = genresArray.get(0).toString();
+
+
+                    else {
+                        String addGenres = null;
+
+
+                        for (int g = 1; g < genresArray.length(); g++) {
+                            addGenres = ", " + genresArray.get(g).toString();
+
+                        }
+
+
+                        genres = genresArray.get(0) + addGenres;
+                    }
+
+
+                }
+
+
+                rated = "normal";//currentCondition.getString(KEY_RATED);
+                plot = currentCondition.getString(KEY_PLOT);
+                urlPoster ="https://image.spreadshirtmedia.com/image-server/v1/compositions/104775043/views/1,width=300,height=300,appearanceId=1,version=1440417743/medical-cross-symbol-t-shirts-men-s-t-shirt.jpg";
+                        currentCondition.getString(KEY_URLPOSTER);
+                if (currentCondition.has(KEY_RATINGS) && !currentCondition.isNull(KEY_RATINGS)) {
+                    ratingString = currentCondition.getString(KEY_RATINGS);
+                }
+                rating = getRating(ratingString);
+
+
+                //INSERT THIS TO DB
+                ContentValues values = new ContentValues();
+
+                values.put(COLUMN_TITLE, title);
+                values.put(MoviesContract.MoviesColumns.COLUMN_IMDB_ID, id);
+                values.put(MoviesContract.MoviesColumns.COLUMN_PLOT, plot);
+                values.put(MoviesContract.MoviesColumns.COLUMN_RATED, rated);
+                values.put(MoviesContract.MoviesColumns.COLUMN_RATING, rating);
+                values.put(MoviesContract.MoviesColumns.COLUMN_RELEASE_DATE, releaseDate);
+                values.put(MoviesContract.MoviesColumns.COLUMN_URL_THUMBNAIL, urlPoster);
+                values.put(MoviesContract.MoviesColumns.COLUMN_GENRES, genres);
+                values.put(MoviesContract.MoviesColumns.COLUMN_RUNTIME, runtime);
+
+                if (!title.equals(Constants.NA)) {
+                    cpo.add(ContentProviderOperation.newInsert(uri).withValues(values).build());
+
+
+                }
+
+            }
+            context.getContentResolver().applyBatch(CONTENT_AUTHORITY, cpo);
+        }catch  (JSONException | RemoteException | OperationApplicationException e) {
+            Log.d("Error updating content.", "Error updating content.", e);
+        }
 
 
 
     }
-
 
 }

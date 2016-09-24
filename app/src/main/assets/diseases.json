@@ -1,11 +1,11 @@
 {
   "data":{
-    "entities":[
+    "diseases":[
       {
 
-        "healthCenters":[
+        "conditions":[
           {
-            "title":"Hopital Prince Regent Charles",
+            "title":"Malaria",
             "originalTitle":"",
             "year":"2016",
             "releaseDate":"20160923",
@@ -34,10 +34,9 @@
               "English"
             ],
             "genres":[
-              "Public",
-              "Bujumbura",
-              "all services",
-              "In-Patient Hospital"
+              "Tropical",
+              "Curable",
+              "Contagious"
             ],
             "plot":"Storks deliver babies...or at least they used to. Now they deliver packages for global internet giant Cornerstore.com. Junior, the company's top delivery stork, is about to be promoted when he accidentally activates the Baby Making Machine, producing an adorable and wholly unauthorized baby girl. Desperate to deliver this bundle of trouble before the boss gets wise, Junior and his friend Tulip, the only human on Stork Mountain, race to make their first-ever baby drop - in a wild and revealing journey that could make more than one family whole and restore the storks' true mission in the world.",
             "simplePlot":"Storks have moved on from delivering babies to packages. But when an order for a baby appears, the best delivery stork must scramble to fix the error by delivering the baby.",
@@ -47,7 +46,7 @@
             "type":"Movie"
           },
           {
-            "title":"CHUK",
+            "title":"Cholera",
             "originalTitle":"",
             "year":"2016",
             "releaseDate":"20160930",
@@ -77,9 +76,9 @@
               "English"
             ],
             "genres":[
-              "Bujumbura",
-              "Militaire",
-              "In-Patient Hospital"
+              "Hygiene",
+              "Contagious",
+              "Curable"
             ],
             "plot":"At the age of 10, Phiona Mutesi sees her world rapidly change when the young girl from the streets of rural Uganda is introduced to the game of chess.",
             "simplePlot":"At the age of 10, Phiona Mutesi sees her world rapidly change when the young girl from the streets of rural Uganda is introduced to the game of chess.",
@@ -91,7 +90,7 @@
             "type":"Movie"
           },
           {
-            "title":"Hopital Militaire",
+            "title":"Dysantery",
             "originalTitle":"",
             "year":"2016",
             "releaseDate":"20160923",
@@ -120,8 +119,8 @@
               "English"
             ],
             "genres":[
-              "Bujumbura",
-              "In-Patient Hospital"
+              "Contagious",
+              "Curable"
             ],
             "plot":"Director Antoine Fuqua brings his modern vision to a classic story in The Magnificent Seven. With the town of Rose Creek under the deadly control of industrialist Bartholomew Bogue, the desperate townspeople employ protection from seven outlaws, bounty hunters, gamblers and hired guns. As they prepare the town for the violent showdown that they know is coming, these seven mercenaries find themselves fighting for more than money.",
             "simplePlot":"Seven gun men in the old west gradually come together to help a poor village against savage thieves.",
@@ -134,7 +133,7 @@
             "type":"Movie"
           },
           {
-            "title":"Kwa Rujandi",
+            "title":"Cararact",
             "originalTitle":"",
             "year":"2016",
             "releaseDate":"20160923",
@@ -163,8 +162,8 @@
               "English"
             ],
             "genres":[
-              "Bujumbura",
-              "In-Patient Hospital"
+              "Eye condition",
+              "Surgery"
             ],
             "plot":"Reeling from a terrifying assault, a 19 year-old boy enrolls into college with his brother and pledges the same fraternity. What happens there, in the name of \"brotherhood,\" tests the boy and his loyalty to his brother in brutal ways.",
             "simplePlot":"Reeling from a terrifying assault, a 19 year-old boy enrolls into college with his brother and pledges the same fraternity. What happens there, in the name of \"brotherhood,\" tests the boy and his loyalty to his brother in brutal ways.",
@@ -177,7 +176,7 @@
             "type":"Movie"
           },
           {
-            "title":"Centre de Sante Condi",
+            "title":"HIV Aids",
             "originalTitle":"",
             "year":"2016",
             "releaseDate":"20160923",
@@ -212,8 +211,8 @@
               "English"
             ],
             "genres":[
-              "Rutovu",
-              "Out-p=Patient Centre"
+              "STD",
+              "Incurable"
             ],
             "plot":"After the collapse of their glamorous romance, a famous director and actress are kidnapped by movie-obsessed dictator Kim Jong-il. Forced to make films in the world's weirdest state, they get a second chance at love, but only one chance at escape.",
             "simplePlot":"After the collapse of their glamorous romance, a famous director and actress are kidnapped by movie-obsessed dictator Kim Jong-il. Forced to make films in the world's weirdest state, they get a second chance at love, but only one chance at escape.",
@@ -225,7 +224,7 @@
             "type":"Movie"
           },
           {
-            "title":"Hopital de Gitega",
+            "title":"Migraine",
             "originalTitle":"",
             "year":"2015",
             "releaseDate":"20160923",
@@ -254,7 +253,7 @@
               "English"
             ],
             "genres":[
-              "In-Patient Hospital"
+              "No big deal"
             ],
             "plot":"Based on Rosalie Ham's best selling novel, The Dressmaker is the story of femme fatale Tilly Dunnage who returns to her small home town in the country to right the wrongs of the past. A stylish drama with comic undertones about love, revenge and haute couture.",
             "simplePlot":"A glamorous woman returns to her small town in rural Australia. With her sewing machine and haute couture style, she transforms the women and exacts sweet revenge on those who did her wrong.",
@@ -267,7 +266,7 @@
             "type":"Movie"
           },
           {
-            "title":"Dentisterie Sekabwa",
+            "title":"Dermatitis",
             "originalTitle":"",
             "year":"2016",
             "releaseDate":"20160919",
@@ -292,9 +291,8 @@
               "English"
             ],
             "genres":[
-              "Gitega",
-              "Private",
-              "Dentists"
+              "Skin",
+              "Manageable"
             ],
             "plot":"The rivalry between two brothers reaches a fever pitch during a charity swim competition.",
             "simplePlot":"The rivalry between two brothers reaches a fever pitch during a charity swim competition.",
@@ -311,7 +309,7 @@
 
         "hospitals":[
           {
-            "title":"Bridget Jones's Baby",
+            "title":"Cholera",
             "originalTitle":"",
             "year":"2016",
             "releaseDate":"20160916",

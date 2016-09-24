@@ -217,9 +217,8 @@ public class ChatFragment extends Fragment implements GoogleApiClient.OnConnecti
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        //mView = inflater.inflate(R.layout.activity_firebase, container, false);
-        mView = inflater.inflate(R.layout.fragment_chat, container, false);
-        mMessageRecyclerView = (RecyclerView) mView.findViewById(R.id.messageRecyclerView);
+                mView = inflater.inflate(R.layout.fragment_chat, container, false);
+
         populateView(mView);
         //
 
@@ -230,7 +229,7 @@ public class ChatFragment extends Fragment implements GoogleApiClient.OnConnecti
     private void populateView(View mView) {
         // Initialize ProgressBar and RecyclerView.
         mProgressBar = (ProgressBar) mView.findViewById(R.id.progressBar);
-      //  mMessageRecyclerView = (RecyclerView)mView.findViewById(R.id.messageRecyclerView);
+      mMessageRecyclerView = (RecyclerView)mView.findViewById(R.id.messageRecyclerView);
         mLinearLayoutManager = new LinearLayoutManager(getContext());
         mLinearLayoutManager.setStackFromEnd(true);
         mMessageRecyclerView.setLayoutManager(mLinearLayoutManager);
