@@ -24,7 +24,7 @@ import org.muganga.activities.NotificationActivity;
 /**
  * This is the home fragment. Need to think of contents.
  */
-public class ConnectFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment implements View.OnClickListener {
     public static final int STATE_SIGNED_IN = 0;
     public static final int STATE_SIGN_IN = 1;
     // TODO: Rename parameter arguments, choose names that match
@@ -53,11 +53,11 @@ public class ConnectFragment extends Fragment implements View.OnClickListener {
 
 
 
-    public ConnectFragment() {
+    public HomeFragment() {
     }
 
     public static Fragment newInstance(String param1, String param2) {
-        ConnectFragment fragment = new ConnectFragment();
+        HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -245,7 +245,10 @@ public class ConnectFragment extends Fragment implements View.OnClickListener {
     }
 
     public void setSignedIn(boolean signedIn) {
-        ConnectFragment.signedIn = signedIn;
+        HomeFragment.signedIn = signedIn;
     }
+
+
+
 }
 

@@ -16,4 +16,17 @@ public class MovieSorter {
             Sort.sortString = sortString;
         }
     }
+
+    public static class Filter{
+
+        public static String filterString="";
+
+        public static String getFilterString() {
+            return filterString;
+        }
+
+        public static void setFilterString(String filterString) {
+            Filter.filterString = filterString;
+        }
+    }
 }

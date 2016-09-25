@@ -21,7 +21,7 @@ public class MoviesContract {
     public static final String PATH_FOUND_MOVIES = "found_movies";
 
     private static String sortString;
-
+    private static  String filterString;
 
     public interface MoviesColumns {
         /**
@@ -56,7 +56,7 @@ public class MoviesContract {
         public static String DEFAULT_SORT = COLUMN_RELEASE_DATE + " DESC";
         public static String TITLE_SORT = COLUMN_TITLE + " ASC";
         public static String RATING_SORT = COLUMN_RATING + " DESC";
-
+        //public static String TITLE_FILTER = "where " + COLUMN_TITLE + "like " + filterString + "%";
 
         /**
          * Matches: /movies/
@@ -100,6 +100,10 @@ public class MoviesContract {
         }
 
 
+        public static String getFilterString() {
+            filterString= MovieSorter.Filter.getFilterString();
+            return COLUMN_TITLE + " " + "like" + " " + "'%"+ filterString + "%" +"'";
+        }
     }
 
     public static final class ComingSoon implements MoviesColumns {

@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.muganga.Logs.Logger;
 import org.muganga.R;
 import org.muganga.adapters.AdapterDiseases;
 import org.muganga.data.MovieLoader;
@@ -39,6 +40,7 @@ public class AskDoctorFragment extends Fragment implements LoaderManager.LoaderC
     private RecyclerView mRecyclerView;
     private View mView;
     private View mProgressbar;
+    private AdapterDiseases mAdapter;
 
     public AskDoctorFragment() {
         // Required empty public constructor
@@ -108,10 +110,10 @@ public class AskDoctorFragment extends Fragment implements LoaderManager.LoaderC
 
         if (isAdded()) {
 
-            AdapterDiseases adapter = new AdapterDiseases(cursor, getActivity());
-            adapter.setHasStableIds(true);
+            mAdapter = new AdapterDiseases(cursor, getActivity());
+            mAdapter.setHasStableIds(true);
             try {
-                mRecyclerView.setAdapter(adapter);
+                mRecyclerView.setAdapter(mAdapter);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -170,6 +172,19 @@ public class AskDoctorFragment extends Fragment implements LoaderManager.LoaderC
     @Override
     public void onRefresh() {
         refresh();
+    }
+
+    @Override
+    public void onFilter(String filterText) {
+        //todo do some filtering...
+        Logger.longToast("Filtering-----");
+        //final List<Movie> filteredModelList = filter(mMovie, filterText);
+      //  m.setFilter(filteredModelList);
+
+        MovieSorter.Filter.setFilterString(filterText);
+        getActivity().getLoaderManager().restartLoader(2,null,this);
+
+
     }
 
     private void refresh() {

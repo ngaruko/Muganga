@@ -76,7 +76,8 @@ public class ChatFragment extends Fragment implements GoogleApiClient.OnConnecti
     private FirebaseAnalytics mFirebaseAnalytics;
     private View mView;
 
-       public static class MessageViewHolder extends RecyclerView.ViewHolder {
+
+    public static class MessageViewHolder extends RecyclerView.ViewHolder {
         public TextView messageTextView;
         public TextView messengerTextView;
         public CircleImageView messengerImageView;
@@ -172,7 +173,7 @@ public class ChatFragment extends Fragment implements GoogleApiClient.OnConnecti
 
 
         mGoogleApiClient = new GoogleApiClient.Builder(getContext())
-                .enableAutoManage(getActivity() /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .enableAutoManage(getActivity(),1 /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API)
                 .build();
 
@@ -224,6 +225,13 @@ public class ChatFragment extends Fragment implements GoogleApiClient.OnConnecti
 
         return mView;
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+       // mGoogleApiClient.stopAutoManage(getActivity());
+        mGoogleApiClient.disconnect();
     }
 
     private void populateView(View mView) {

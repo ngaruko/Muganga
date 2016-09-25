@@ -21,33 +21,31 @@ import android.transition.TransitionInflater;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import org.muganga.Logs.Logger;
-import org.muganga.activities.GlobalSearchActivity;
 import org.muganga.fragments.AskDoctorFragment;
 import org.muganga.fragments.ChatFragment;
 import org.muganga.fragments.ChatMessageFragment;
-import org.muganga.fragments.ConnectFragment;
+import org.muganga.fragments.HomeFragment;
 import org.muganga.fragments.LocationsFragment;
 import org.muganga.fragments.dummy.DummyContent;
 import org.muganga.services.MoviesService;
 import org.muganga.tabs.SlidingTabLayout;
-import org.muganga.utilities.LogHelper;
 import org.muganga.utilities.SortListener;
 
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ChatMessageFragment.OnListFragmentInteractionListener, ChatFragment.OnFragmentInteractionListener {
+
+public class MainActivity extends AppCompatActivity implements
+        ChatMessageFragment.OnListFragmentInteractionListener,
+        ChatFragment.OnFragmentInteractionListener,
+        SearchView.OnQueryTextListener{
 
 
     public static final int TAB_HOME = 0;
-    public static final int TAB_ASK_DOCTOR = 2;
-    public static final int TAB_LOCATIONS = 1;
-
-    public static final int TAB_CONTACT = 3;
-
-
+    public static final int TAB_INFO = 1;
+    public static final int TAB_LOCATIONS = 2;
+    public static final int TAB_ASK_DOCTOR = 3;
     public static final int TAB_COUNT = 4;
 
 
@@ -56,9 +54,10 @@ public class MainActivity extends AppCompatActivity implements ChatMessageFragme
     private ViewPager mPager;
     private SlidingTabLayout mTabs;
 
-
     private MyPagerAdapter mAdapter;
+    public Fragment mFragment;
 
+    private MenuItem mSearchItem;
 
 
     @Override
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements ChatMessageFragme
             getWindow().setSharedElementEnterTransition(TransitionInflater.from(this).inflateTransition(R.transition.shared_element_transition_a));
         }
         super.onCreate(savedInstanceState);
-// Call the service to get all movies
+            // Call the service to get all movies
       startService(new Intent(this, MoviesService.class));
 
 
@@ -88,8 +87,8 @@ public class MainActivity extends AppCompatActivity implements ChatMessageFragme
         //Initialise mpager and mTabs
 
         mPager = (ViewPager) findViewById(R.id.pager);
-        mPager.setOffscreenPageLimit(5);
-        //For tabs
+        mPager.setOffscreenPageLimit(0);
+        //For mTabsArray
         mAdapter = new MyPagerAdapter(getSupportFragmentManager());
 
 
@@ -102,7 +101,10 @@ public class MainActivity extends AppCompatActivity implements ChatMessageFragme
 
         mTabs.setViewPager(mPager);
 
+        //call instantiate item since getItem may return null depending on whether the PagerAdapter is of type FragmentPagerAdapter or FragmentStatePagerAdapter
 
+        mFragment = (Fragment) mAdapter.instantiateItem(mPager, mPager.getCurrentItem());
+      //Logger.error("Initial Fragment: "  + mFragment.toString());
 
     }
 
@@ -159,81 +161,80 @@ public class MainActivity extends AppCompatActivity implements ChatMessageFragme
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        Fragment currentFragment = null;
+        mSearchItem = menu.findItem(R.id.action_search);
+        FragmentManager fragmentManager = MainActivity.this.getSupportFragmentManager();
+        List<Fragment> fragments = fragmentManager.getFragments();
+        if(fragments != null){
+            for(Fragment fragment : fragments){
 
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+                if(fragment != null && fragment.isVisible())
+                    currentFragment= fragment;
+            }
+        }
+Logger.error(currentFragment.toString());
+        if (currentFragment instanceof SortListener) {
 
-        handleSearchView(searchView);
+            //mSearchItem = menu.findItem(R.id.action_search);
+            mSearchItem.setVisible(true);
+            SearchView searchView = (SearchView) MenuItemCompat.getActionView(mSearchItem);
+
+            mSearchItem.setVisible(true);
+            searchView.setQueryHint("Search...");
+            searchView.setSubmitButtonEnabled(true);
+            //*** setOnQueryTextFocusChangeListener ***
+
+            //*** setOnQueryTextListener ***
+            searchView.setOnQueryTextListener(this);
+
+        }else{
+            mSearchItem.setVisible(false);
+        }
+
+
+
 
 
         return true;
     }
 
-    private void handleSearchView(final SearchView search) {
-        search.setQueryHint("Hospitals, Doctors, Health Centers,Pharmacies, Etc");
-        search.setSubmitButtonEnabled(true);
-        //*** setOnQueryTextFocusChangeListener ***
-        search.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
 
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                // TODO To add more code in Phase 2
+    @Override
+    public boolean onQueryTextChange(String filterText) {
+        Fragment fragment=(Fragment) mAdapter.instantiateItem(mPager, mPager.getCurrentItem());
 
-            }
-        });
+        if (fragment instanceof SortListener) {
+            ((SortListener) fragment).onFilter(filterText);
+        } else {
+            Logger.error("Not an instance of SortListener" + fragment.toString());
+            return  false;
+        }
 
-        //*** setOnQueryTextListener ***
-        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        return true;
+    }
 
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-//todo here
-                //mTitle=query;
-                search.clearFocus();
-                //display the Progress bar
-//                progressbarView.setVisibility(View.VISIBLE);
-
-                searchForMovies(query);
-
-                return false;
-            }
-
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                // TODO To do more tweaks in phase two or later
-
-                return false;
-            }
-
-
-        });
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+       // Logger.longToast(mFragment.toString());
+        // TODO: 25-Sep-16  some search fuinctionality 
+        return false;
     }
 
 
-    public void searchForMovies(String searchQuery) {
-
-        //todo a asunc tast to get movies
 
 
 
 
-        if (searchQuery != null) {
 
 
-            LogHelper.log("Sending intent from Main: " + searchQuery);
-            Intent intent = new Intent(this, GlobalSearchActivity.class);
-
-            intent.putExtra("title_extra", searchQuery);
-            startActivity(intent);
-        } else
-            Toast.makeText(this, "Please enter a valid, non-empty search query!! ", Toast.LENGTH_LONG).show();
 
 
-        //todo call fragment
 
 
-    }
+
+
+
+
 
 
     @Override
@@ -242,10 +243,9 @@ public class MainActivity extends AppCompatActivity implements ChatMessageFragme
 
         if (id == R.id.refresh) this.startService(new Intent(this, MoviesService.class));
 
-        //call instantiate item since getItem may return null depending on whether the PagerAdapter is of type FragmentPagerAdapter or FragmentStatePagerAdapter
-        Fragment fragment = (Fragment) mAdapter.instantiateItem(mPager, mPager.getCurrentItem());
 
-        if (fragment instanceof SortListener) {
+
+        if (mFragment instanceof SortListener) {
 
 
             switch (id) {
@@ -253,8 +253,8 @@ public class MainActivity extends AppCompatActivity implements ChatMessageFragme
 
                 case R.id.refresh:
                     try {
-                        ((SortListener) fragment).onRefresh();
-                        Log.d("rfress", "refereshin");
+                        ((SortListener) mFragment).onRefresh();
+                        Logger.longToast(mFragment.toString());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -263,8 +263,8 @@ public class MainActivity extends AppCompatActivity implements ChatMessageFragme
 
                 case R.id.action_sort_title:
                     try {
-                        Log.d("title", "tile");
-                        ((SortListener) fragment).onSortTitle();
+                        Logger.longToast(mFragment.toString());
+                        ((SortListener) mFragment).onSortTitle();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -274,7 +274,7 @@ public class MainActivity extends AppCompatActivity implements ChatMessageFragme
                 case R.id.action_sort_date:
                     try {
                         Log.d("date", "date");
-                        ((SortListener) fragment).onSortByDate();
+                        ((SortListener) mFragment).onSortByDate();
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -285,7 +285,16 @@ public class MainActivity extends AppCompatActivity implements ChatMessageFragme
                 case R.id.action_sort_rating:
                     try {
                         Log.d("rating", "rating");
-                        ((SortListener) fragment).onSortByRating();
+                        ((SortListener) mFragment).onSortByRating();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case R.id.action_search:
+                    try {
+                      Logger.longToast(mFragment.toString());
+                        //((SortListener) mFragment).onSortByRating();
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -307,7 +316,7 @@ public class MainActivity extends AppCompatActivity implements ChatMessageFragme
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-        Logger.longToast("Some change");
+        //todo not sure what to do here
     }
 
 
@@ -315,8 +324,8 @@ public class MainActivity extends AppCompatActivity implements ChatMessageFragme
 
     public class MyPagerAdapter extends FragmentStatePagerAdapter {
 
-        //Initialise string-array for tabs
-        String[] tabs = getResources().getStringArray(R.array.tabs);
+        //Initialise string-array for mTabsArray
+        String[] mTabsArray = getResources().getStringArray(R.array.tabs);
 
 
         public MyPagerAdapter(FragmentManager fragmentManager) {
@@ -328,35 +337,40 @@ public class MainActivity extends AppCompatActivity implements ChatMessageFragme
         public Fragment getItem(int position) {
 
 
-            Fragment fragment = null;
+          Fragment  mFragment = null;
 
 
             switch (position) {
 
                 case TAB_HOME:
-                    fragment = AskDoctorFragment.newInstance("", "");
+
+                    mFragment = HomeFragment.newInstance("", "");
+
+
+                    break;
+
+                case TAB_INFO:
+
+                    mFragment = AskDoctorFragment.newInstance("", "");
+
 
                     break;
 
                 case TAB_LOCATIONS:
-                    fragment = LocationsFragment.newInstance("", "");
-
+                    mFragment = LocationsFragment.newInstance("", "");
 
                     break;
+
 
                 case TAB_ASK_DOCTOR:
-                    //fragment = ChatMessageFragment.newInstance(1);
-                    fragment = ChatFragment.newInstance("","");
-                    break;
-
-
-                case TAB_CONTACT:
-                    fragment = ConnectFragment.newInstance("", "");
+                    mFragment = ChatFragment.newInstance("","");
 
                     break;
 
             }
-            return fragment;
+            Logger.error("Fragment in View: " + mFragment.toString());
+            return mFragment;
+
         }
 
         /**
@@ -371,7 +385,7 @@ public class MainActivity extends AppCompatActivity implements ChatMessageFragme
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return tabs[position];
+            return mTabsArray[position];
         }
     }
 

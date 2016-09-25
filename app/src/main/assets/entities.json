@@ -35,9 +35,9 @@
             ],
             "genres":[
               "Public",
-              "Bujumbura",
-              "all services",
-              "In-Patient Hospital"
+              "Avenue du Port, Bujumbura",
+              "Tel: +257 22-8435/+ 257 226 166"
+                            
             ],
             "plot":"Storks deliver babies...or at least they used to. Now they deliver packages for global internet giant Cornerstore.com. Junior, the company's top delivery stork, is about to be promoted when he accidentally activates the Baby Making Machine, producing an adorable and wholly unauthorized baby girl. Desperate to deliver this bundle of trouble before the boss gets wise, Junior and his friend Tulip, the only human on Stork Mountain, race to make their first-ever baby drop - in a wild and revealing journey that could make more than one family whole and restore the storks' true mission in the world.",
             "simplePlot":"Storks have moved on from delivering babies to packages. But when an order for a baby appears, the best delivery stork must scramble to fix the error by delivering the baby.",
@@ -47,7 +47,7 @@
             "type":"Movie"
           },
           {
-            "title":"CHUK",
+            "title":"Centre Hospitalo-Universitaire de Kamenge",
             "originalTitle":"",
             "year":"2016",
             "releaseDate":"20160930",
@@ -77,9 +77,10 @@
               "English"
             ],
             "genres":[
-              "Bujumbura",
-              "Militaire",
-              "In-Patient Hospital"
+              
+              " Boulevard du 28 Novembre",
+             "P.O. Box 2210  Bujumbura",
+             " Tel: +257 23-2048 or + 257 236 063"
             ],
             "plot":"At the age of 10, Phiona Mutesi sees her world rapidly change when the young girl from the streets of rural Uganda is introduced to the game of chess.",
             "simplePlot":"At the age of 10, Phiona Mutesi sees her world rapidly change when the young girl from the streets of rural Uganda is introduced to the game of chess.",
@@ -91,7 +92,7 @@
             "type":"Movie"
           },
           {
-            "title":"Hopital Militaire",
+            "title":"Polyclinique Centrale",
             "originalTitle":"",
             "year":"2016",
             "releaseDate":"20160923",
@@ -120,8 +121,9 @@
               "English"
             ],
             "genres":[
-              "Bujumbura",
-              "In-Patient Hospital"
+              "Boulevard de l’UPRONA",
+"P.O. Box 378  Bujumbura",
+              "Tel: +257 22-5050"
             ],
             "plot":"Director Antoine Fuqua brings his modern vision to a classic story in The Magnificent Seven. With the town of Rose Creek under the deadly control of industrialist Bartholomew Bogue, the desperate townspeople employ protection from seven outlaws, bounty hunters, gamblers and hired guns. As they prepare the town for the violent showdown that they know is coming, these seven mercenaries find themselves fighting for more than money.",
             "simplePlot":"Seven gun men in the old west gradually come together to help a poor village against savage thieves.",
@@ -134,7 +136,7 @@
             "type":"Movie"
           },
           {
-            "title":"Kwa Rujandi",
+            "title":"Laboratoire d’Analyses Medicales",
             "originalTitle":"",
             "year":"2016",
             "releaseDate":"20160923",
@@ -163,8 +165,10 @@
               "English"
             ],
             "genres":[
-              "Bujumbura",
-              "In-Patient Hospital"
+             
+              "Avenue de l’Amitié",
+"P.O. Box 2291 Bujumbura, Burundi",
+"Tel: +257 22-2695"
             ],
             "plot":"Reeling from a terrifying assault, a 19 year-old boy enrolls into college with his brother and pledges the same fraternity. What happens there, in the name of \"brotherhood,\" tests the boy and his loyalty to his brother in brutal ways.",
             "simplePlot":"Reeling from a terrifying assault, a 19 year-old boy enrolls into college with his brother and pledges the same fraternity. What happens there, in the name of \"brotherhood,\" tests the boy and his loyalty to his brother in brutal ways.",
@@ -177,7 +181,7 @@
             "type":"Movie"
           },
           {
-            "title":"Centre de Sante Condi",
+            "title":"Clinique Prince Louis Rwagasore",
             "originalTitle":"",
             "year":"2016",
             "releaseDate":"20160923",
@@ -212,8 +216,10 @@
               "English"
             ],
             "genres":[
-              "Rutovu",
-              "Out-p=Patient Centre"
+              
+              "Avenue Pierre Ngendandumwe",
+"Bujumbura, Burundi",
+"Tel: +257 22-3881"
             ],
             "plot":"After the collapse of their glamorous romance, a famous director and actress are kidnapped by movie-obsessed dictator Kim Jong-il. Forced to make films in the world's weirdest state, they get a second chance at love, but only one chance at escape.",
             "simplePlot":"After the collapse of their glamorous romance, a famous director and actress are kidnapped by movie-obsessed dictator Kim Jong-il. Forced to make films in the world's weirdest state, they get a second chance at love, but only one chance at escape.",
@@ -225,7 +231,8 @@
             "type":"Movie"
           },
           {
-            "title":"Hopital de Gitega",
+            "title":"Hopital Militaire de Kamenge",
+
             "originalTitle":"",
             "year":"2015",
             "releaseDate":"20160923",
@@ -254,7 +261,9 @@
               "English"
             ],
             "genres":[
-              "In-Patient Hospital"
+              "Boulevard du 28 Novembre",
+"P.O. Box 5117 Bujumbura, Burundi",
+"Tel: +257 22-2082"
             ],
             "plot":"Based on Rosalie Ham's best selling novel, The Dressmaker is the story of femme fatale Tilly Dunnage who returns to her small home town in the country to right the wrongs of the past. A stylish drama with comic undertones about love, revenge and haute couture.",
             "simplePlot":"A glamorous woman returns to her small town in rural Australia. With her sewing machine and haute couture style, she transforms the women and exacts sweet revenge on those who did her wrong.",
@@ -267,7 +276,7 @@
             "type":"Movie"
           },
           {
-            "title":"Dentisterie Sekabwa",
+            "title":"New Medical Centre",
             "originalTitle":"",
             "year":"2016",
             "releaseDate":"20160919",
@@ -292,9 +301,9 @@
               "English"
             ],
             "genres":[
-              "Gitega",
-              "Private",
-              "Dentists"
+              "19 Av. de la R. D. Congo",
+"Bujumbura, Burundi",
+"Tel: + 257 22 4671"
             ],
             "plot":"The rivalry between two brothers reaches a fever pitch during a charity swim competition.",
             "simplePlot":"The rivalry between two brothers reaches a fever pitch during a charity swim competition.",
@@ -304,14 +313,9 @@
             "rated":"R",
             "votes":"113",
             "type":"Movie"
-          }
-        ]
-      },
-      {
-
-        "hospitals":[
-          {
-            "title":"Bridget Jones's Baby",
+          },
+           {
+            "title":"Hopital Medical Service",
             "originalTitle":"",
             "year":"2016",
             "releaseDate":"20160916",
@@ -343,8 +347,8 @@
               "English"
             ],
             "genres":[
-              "Comedy",
-              "Romance"
+              "Bujumbura, Burundi",
+"Tel: +257 22-2301"
             ],
             "plot":"Bridget's focus on single life and her career is interrupted when she finds herself pregnant, but with one hitch ... she can only be fifty percent sure of the identity of her baby's father.",
             "simplePlot":"Bridget's focus on single life and her career is interrupted when she finds herself pregnant, but with one hitch ... she can only be fifty percent sure of the identity of her baby's father.",
@@ -357,7 +361,7 @@
             "type":"Movie"
           },
           {
-            "title":"Snowden",
+            "title":"Clinic St. Jean Sehungiza",
             "originalTitle":"",
             "year":"2016",
             "releaseDate":"20160916",
@@ -388,9 +392,8 @@
               "English"
             ],
             "genres":[
-              "Biography",
-              "Drama",
-              "Thriller"
+              "Blvd. de l’UPRONA",
+"Bujumbura, Burundi"
             ],
             "plot":"SNOWDEN stars Joseph Gordon-Levitt and is written and directed by Oliver Stone. The script is based on the books The Snowden Files: The Inside Story of the World's Most Wanted Man by Luke Harding and Time of the Octopus by Anatoly Kucherena.",
             "simplePlot":"The NSA's illegal surveillance techniques are leaked to the public by one of the agency's employees, , in the form of thousands of classified documents distributed to the press.",
@@ -403,7 +406,7 @@
             "type":"Movie"
           },
           {
-            "title":"Blair Witch",
+            "title":"Clinique Chinoise",
             "originalTitle":"",
             "year":"2016",
             "releaseDate":"20160916",
@@ -428,8 +431,143 @@
               "English"
             ],
             "genres":[
-              "Horror",
-              "Thriller"
+              "Avenue Ndamukiza, Kinindo",
+"Bumbura, Burundi"
+            ],
+            "plot":"After discovering a video showing what he believes to be his sister's experiences in the demonic woods of the Blair Witch, James and a group of friends head to the forest in search of his lost sibling.",
+            "simplePlot":"After discovering a video showing what he believes to be his sister's experiences in the demonic woods of the Blair Witch, James and a group of friends head to the forest in search of his lost sibling.",
+            "idIMDB":"tt1540011",
+            "urlIMDB":"http://www.imdb.com/title/tt1540011",
+            "rating":"5.9",
+            "metascore":"54",
+            "rated":"R",
+            "votes":"720",
+            "type":"Movie"
+          }
+        ]
+      },
+      {
+
+        "hospitals":[
+          {
+            "title":"Hopital Medical Service",
+            "originalTitle":"",
+            "year":"2016",
+            "releaseDate":"20160916",
+            "directors":[
+              {
+                "name":"Sharon Maguire",
+                "id":"nm0536632"
+              }
+            ],
+            "writers":[
+              {
+                "name":"Helen Fielding",
+                "id":"nm0276144"
+              },
+              {
+                "name":"Dan Mazer",
+                "id":"nm0563243"
+              }
+            ],
+            "runtime":"122 min",
+            "urlPoster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMjQyMTI0MjIyOV5BMl5BanBnXkFtZTgwMzEyMjQ1ODE@._V1_UX182_CR0,0,182,268_AL_.jpg",
+            "countries":[
+              "Ireland",
+              "UK",
+              "France",
+              "USA"
+            ],
+            "languages":[
+              "English"
+            ],
+            "genres":[
+              "Bujumbura, Burundi",
+"Tel: +257 22-2301"
+            ],
+            "plot":"Bridget's focus on single life and her career is interrupted when she finds herself pregnant, but with one hitch ... she can only be fifty percent sure of the identity of her baby's father.",
+            "simplePlot":"Bridget's focus on single life and her career is interrupted when she finds herself pregnant, but with one hitch ... she can only be fifty percent sure of the identity of her baby's father.",
+            "idIMDB":"tt1473832",
+            "urlIMDB":"http://www.imdb.com/title/tt1473832",
+            "rating":"6.6",
+            "metascore":"67",
+            "rated":"R",
+            "votes":"402",
+            "type":"Movie"
+          },
+          {
+            "title":"Clinic St. Jean Sehungiza",
+            "originalTitle":"",
+            "year":"2016",
+            "releaseDate":"20160916",
+            "directors":[
+              {
+                "name":"Oliver Stone",
+                "id":"nm0000231"
+              }
+            ],
+            "writers":[
+              {
+                "name":"Kieran Fitzgerald",
+                "id":"nm1634307"
+              },
+              {
+                "name":"Oliver Stone",
+                "id":"nm0000231"
+              }
+            ],
+            "runtime":"134 min",
+            "urlPoster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMTg2MzYzNzgzOF5BMl5BanBnXkFtZTgwOTg4NzQ4OTE@._V1_UX182_CR0,0,182,268_AL_.jpg",
+            "countries":[
+              "France",
+              "Germany",
+              "USA"
+            ],
+            "languages":[
+              "English"
+            ],
+            "genres":[
+              "Blvd. de l’UPRONA",
+"Bujumbura, Burundi"
+            ],
+            "plot":"SNOWDEN stars Joseph Gordon-Levitt and is written and directed by Oliver Stone. The script is based on the books The Snowden Files: The Inside Story of the World's Most Wanted Man by Luke Harding and Time of the Octopus by Anatoly Kucherena.",
+            "simplePlot":"The NSA's illegal surveillance techniques are leaked to the public by one of the agency's employees, , in the form of thousands of classified documents distributed to the press.",
+            "idIMDB":"tt3774114",
+            "urlIMDB":"http://www.imdb.com/title/tt3774114",
+            "rating":"6.3",
+            "metascore":"59",
+            "rated":"R",
+            "votes":"1,029",
+            "type":"Movie"
+          },
+          {
+            "title":"Clinique Chinoise",
+            "originalTitle":"",
+            "year":"2016",
+            "releaseDate":"20160916",
+            "directors":[
+              {
+                "name":"Adam Wingard",
+                "id":"nm1417392"
+              }
+            ],
+            "writers":[
+              {
+                "name":"Simon Barrett",
+                "id":"nm1440023"
+              }
+            ],
+            "runtime":"89 min",
+            "urlPoster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMjY5NDE2OTk3NF5BMl5BanBnXkFtZTgwMTE5MDY5OTE@._V1_UX182_CR0,0,182,268_AL_.jpg",
+            "countries":[
+              "USA"
+            ],
+            "languages":[
+              "English"
+            ],
+            "genres":[
+              "Avenue Ndamukiza, Kinindo",
+"Bumbura, Burundi"
             ],
             "plot":"After discovering a video showing what he believes to be his sister's experiences in the demonic woods of the Blair Witch, James and a group of friends head to the forest in search of his lost sibling.",
             "simplePlot":"After discovering a video showing what he believes to be his sister's experiences in the demonic woods of the Blair Witch, James and a group of friends head to the forest in search of his lost sibling.",

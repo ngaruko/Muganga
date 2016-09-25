@@ -141,7 +141,7 @@ public class LocationsFragment extends Fragment implements LoaderManager.LoaderC
     public void onSortByRating() {
 
         MovieSorter.Sort.setSortString(TAG_SORT_RATING);
-        getActivity().getLoaderManager().restartLoader(1, null, this);
+        getActivity().getLoaderManager().restartLoader(1,null, this);
 
 
         Snackbar
@@ -154,6 +154,15 @@ public class LocationsFragment extends Fragment implements LoaderManager.LoaderC
     @Override
     public void onRefresh() {
         refresh();
+    }
+
+    @Override
+    public void onFilter(String filterText) {
+
+        MovieSorter.Filter.setFilterString(filterText);
+        getActivity().getLoaderManager().restartLoader(3,null,this);
+
+
     }
 
     private void refresh() {

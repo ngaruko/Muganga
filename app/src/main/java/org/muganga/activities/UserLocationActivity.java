@@ -50,8 +50,8 @@ public class UserLocationActivity extends AppCompatActivity implements LocationL
 
     @Override
     public void onLocationChanged(Location location) {
-        Logger.m(String.valueOf(location.getLatitude()));
-        Logger.m(String.valueOf(location.getLongitude()));
+        Logger.debug(String.valueOf(location.getLatitude()));
+        Logger.debug(String.valueOf(location.getLongitude()));
 
 
     }

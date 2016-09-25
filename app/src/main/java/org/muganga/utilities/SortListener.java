@@ -10,4 +10,6 @@ public interface SortListener {
 
     void onSortByRating();
     void onRefresh();
+
+    void onFilter(String filterText);
 }

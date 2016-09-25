@@ -8,8 +8,10 @@ import android.net.Uri;
 
 public class MovieLoader extends CursorLoader {
     private MovieLoader(Context context, Uri uri) {
-        super(context, uri, Query.PROJECTION, null, null, MoviesContract.InTheater.getSortString());
+        super(context, uri, Query.PROJECTION, MoviesContract.InTheater.getFilterString(), null, MoviesContract.InTheater.getSortString());
     }
+
+
 
     public static MovieLoader newAllInTheatersMoviesInstance(Context context) {
         return new MovieLoader(context, MoviesContract.InTheater.buildDirUri());
@@ -50,7 +52,9 @@ public class MovieLoader extends CursorLoader {
     public static MovieLoader newAllFoundMoviesInstance(Context context) {
         return new MovieLoader(context, MoviesContract.FoundMovies.buildDirUri());
     }
-
+    public static MovieLoader newAllFilteredMoviesInstance(Context context) {
+        return new MovieLoader(context, MoviesContract.FoundMovies.buildDirUri());
+    }
 
 
 
