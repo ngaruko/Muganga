@@ -27,9 +27,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.android.gms.appinvite.AppInvite;
 import com.google.android.gms.appinvite.AppInviteInvitation;
-import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -100,7 +98,7 @@ public class ChatFragment extends Fragment implements GoogleApiClient.OnConnecti
     private String mUsername;
     private String mPhotoUrl;
     private SharedPreferences mSharedPreferences;
-    private GoogleApiClient mGoogleApiClient;
+
 
     private Button mSendButton;
     private RecyclerView mMessageRecyclerView;
@@ -172,11 +170,6 @@ public class ChatFragment extends Fragment implements GoogleApiClient.OnConnecti
 
 
 
-        mGoogleApiClient = new GoogleApiClient.Builder(getContext())
-                .enableAutoManage(getActivity(),1 /* FragmentActivity */, this /* OnConnectionFailedListener */)
-                .addApi(Auth.GOOGLE_SIGN_IN_API)
-                .build();
-
 
         // Initialize Firebase Remote Config.
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
@@ -200,15 +193,6 @@ public class ChatFragment extends Fragment implements GoogleApiClient.OnConnecti
         fetchConfig();
 
 
-
-        //init
-        mGoogleApiClient = new GoogleApiClient.Builder(getContext())
-                //.enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API)
-                .addApi(AppInvite.API)
-                .build();
-
-
         //ini
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
     }
@@ -227,12 +211,7 @@ public class ChatFragment extends Fragment implements GoogleApiClient.OnConnecti
 
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-       // mGoogleApiClient.stopAutoManage(getActivity());
-        mGoogleApiClient.disconnect();
-    }
+
 
     private void populateView(View mView) {
         // Initialize ProgressBar and RecyclerView.

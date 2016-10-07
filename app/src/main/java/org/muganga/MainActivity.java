@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -21,6 +22,10 @@ import android.transition.TransitionInflater;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.muganga.Logs.Logger;
 import org.muganga.fragments.AskDoctorFragment;
@@ -39,7 +44,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements
         ChatMessageFragment.OnListFragmentInteractionListener,
         ChatFragment.OnFragmentInteractionListener,
-        SearchView.OnQueryTextListener{
+        SearchView.OnQueryTextListener,
+        GoogleApiClient.OnConnectionFailedListener,
+        FragmentManager.OnBackStackChangedListener{
 
 
     public static final int TAB_HOME = 0;
@@ -57,7 +64,9 @@ public class MainActivity extends AppCompatActivity implements
     private MyPagerAdapter mAdapter;
     public Fragment mFragment;
 
-    private MenuItem mSearchItem;
+    public MenuItem mSearchItem;
+    private GoogleApiClient mGoogleApiClient;
+    private SearchView mSearchView;
 
 
     @Override
@@ -87,10 +96,11 @@ public class MainActivity extends AppCompatActivity implements
         //Initialise mpager and mTabs
 
         mPager = (ViewPager) findViewById(R.id.pager);
-        mPager.setOffscreenPageLimit(0);
+        mPager.setOffscreenPageLimit(4);
         //For mTabsArray
         mAdapter = new MyPagerAdapter(getSupportFragmentManager());
-
+       //mAdapter = new MyPagerAdapter(this.));
+       // setAdapter(new PagerAdapter(getActivity().getChildFragmentmanager()));
 
         mPager.setAdapter(mAdapter);
         // Attach the page change listener inside the activity
@@ -104,7 +114,16 @@ public class MainActivity extends AppCompatActivity implements
         //call instantiate item since getItem may return null depending on whether the PagerAdapter is of type FragmentPagerAdapter or FragmentStatePagerAdapter
 
         mFragment = (Fragment) mAdapter.instantiateItem(mPager, mPager.getCurrentItem());
-      //Logger.error("Initial Fragment: "  + mFragment.toString());
+
+
+             // Logger.error("Initial Fragment: "  + mFragment.toString());
+
+        //Google stuff
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this,0 /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API)
+                .build();
+
 
     }
 
@@ -172,23 +191,23 @@ public class MainActivity extends AppCompatActivity implements
                     currentFragment= fragment;
             }
         }
-Logger.error(currentFragment.toString());
-        if (currentFragment instanceof SortListener) {
 
-            //mSearchItem = menu.findItem(R.id.action_search);
-            mSearchItem.setVisible(true);
-            SearchView searchView = (SearchView) MenuItemCompat.getActionView(mSearchItem);
+       if (currentFragment instanceof SortListener) {
+
+            mSearchItem = menu.findItem(R.id.action_search);
+           mSearchItem.setVisible(true);
+            mSearchView = (SearchView) MenuItemCompat.getActionView(mSearchItem);
 
             mSearchItem.setVisible(true);
-            searchView.setQueryHint("Search...");
-            searchView.setSubmitButtonEnabled(true);
+        mSearchView.setQueryHint("Search...");
+        mSearchView.setSubmitButtonEnabled(true);
             //*** setOnQueryTextFocusChangeListener ***
 
             //*** setOnQueryTextListener ***
-            searchView.setOnQueryTextListener(this);
+        mSearchView.setOnQueryTextListener(this);
 
-        }else{
-            mSearchItem.setVisible(false);
+       }else{
+           mSearchItem.setVisible(false);
         }
 
 
@@ -204,6 +223,7 @@ Logger.error(currentFragment.toString());
         Fragment fragment=(Fragment) mAdapter.instantiateItem(mPager, mPager.getCurrentItem());
 
         if (fragment instanceof SortListener) {
+            Logger.error("Not an instance of SortListener");
             ((SortListener) fragment).onFilter(filterText);
         } else {
             Logger.error("Not an instance of SortListener" + fragment.toString());
@@ -216,9 +236,10 @@ Logger.error(currentFragment.toString());
     @Override
     public boolean onQueryTextSubmit(String query) {
        // Logger.longToast(mFragment.toString());
-        // TODO: 25-Sep-16  some search fuinctionality 
+        // TODO: 25-Sep-16  some search fuinctionality
         return false;
     }
+
 
 
 
@@ -319,6 +340,23 @@ Logger.error(currentFragment.toString());
         //todo not sure what to do here
     }
 
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        // TODO: 26-Sep-16 handle failed connection
+    }
+
+    @Override
+    public void onBackStackChanged() {
+        mSearchView.setQuery("", true);
+      mSearchView.setIconified(false);
+       // mSearchView.clearFocus();
+        Logger.error("Fragment changed");
+    }
+
+    public void hideSearch() {
+        mSearchItem.setVisible(false);
+    }
+
 
     //Construct an adapter
 
@@ -337,7 +375,7 @@ Logger.error(currentFragment.toString());
         public Fragment getItem(int position) {
 
 
-          Fragment  mFragment = null;
+
 
 
             switch (position) {
@@ -347,18 +385,19 @@ Logger.error(currentFragment.toString());
                     mFragment = HomeFragment.newInstance("", "");
 
 
+
                     break;
 
                 case TAB_INFO:
 
+
+
                     mFragment = AskDoctorFragment.newInstance("", "");
-
-
                     break;
 
                 case TAB_LOCATIONS:
-                    mFragment = LocationsFragment.newInstance("", "");
 
+                    mFragment = LocationsFragment.newInstance("", "");
                     break;
 
 
@@ -368,7 +407,11 @@ Logger.error(currentFragment.toString());
                     break;
 
             }
-            Logger.error("Fragment in View: " + mFragment.toString());
+
+
+
+            Logger.error("Fragment changed");
+
             return mFragment;
 
         }
@@ -387,6 +430,19 @@ Logger.error(currentFragment.toString());
         public CharSequence getPageTitle(int position) {
             return mTabsArray[position];
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mGoogleApiClient.stopAutoManage(this);
+        mGoogleApiClient.disconnect();
+    }
+
+    @Override
+    protected void onResumeFragments() {
+        super.onResumeFragments();
+        Logger.error("Fragment resumed");
     }
 
 

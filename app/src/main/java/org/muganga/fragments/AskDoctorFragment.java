@@ -2,7 +2,6 @@ package org.muganga.fragments;
 
 
 import android.app.LoaderManager;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -17,7 +16,6 @@ import org.muganga.Logs.Logger;
 import org.muganga.R;
 import org.muganga.adapters.AdapterDiseases;
 import org.muganga.data.MovieLoader;
-import org.muganga.services.MoviesService;
 import org.muganga.utilities.MovieSorter;
 import org.muganga.utilities.SortListener;
 
@@ -62,10 +60,10 @@ public class AskDoctorFragment extends Fragment implements LoaderManager.LoaderC
 
 
         getActivity().getLoaderManager().initLoader(0, null, this);
-
+Logger.error(this.getArguments().getString(ARG_PARAM1));
 
         if (savedInstanceState == null) {
-            //refresh();
+            refresh();
 
         }
 
@@ -77,7 +75,8 @@ public class AskDoctorFragment extends Fragment implements LoaderManager.LoaderC
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
+//clean the text view
+        MovieSorter.Filter.setFilterString("");
         mView = inflater.inflate(R.layout.fragment_in_theaters, container, false);
 
 
@@ -109,6 +108,10 @@ public class AskDoctorFragment extends Fragment implements LoaderManager.LoaderC
 
 
         if (isAdded()) {
+            int columnCount = getResources().getInteger(R.integer.list_column_count);
+            StaggeredGridLayoutManager sglm =
+                    new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
+            mRecyclerView.setLayoutManager(sglm);
 
             mAdapter = new AdapterDiseases(cursor, getActivity());
             mAdapter.setHasStableIds(true);
@@ -117,11 +120,9 @@ public class AskDoctorFragment extends Fragment implements LoaderManager.LoaderC
 
             } catch (Exception e) {
                 e.printStackTrace();
+
             }
-            int columnCount = getResources().getInteger(R.integer.list_column_count);
-            StaggeredGridLayoutManager sglm =
-                    new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
-            mRecyclerView.setLayoutManager(sglm);
+            
         }
     }
 
@@ -182,14 +183,15 @@ public class AskDoctorFragment extends Fragment implements LoaderManager.LoaderC
       //  m.setFilter(filteredModelList);
 
         MovieSorter.Filter.setFilterString(filterText);
-        getActivity().getLoaderManager().restartLoader(2,null,this);
+        getActivity().getLoaderManager().restartLoader(0,null,this);
+        MovieSorter.Filter.setFilterString("");
 
 
     }
 
     private void refresh() {
-        getActivity().startService(new Intent(getActivity(), MoviesService.class));
-        getActivity().getLoaderManager().restartLoader(1, null, this);
+        //getActivity().startService(new Intent(getActivity(), MoviesService.class));
+        getActivity().getLoaderManager().restartLoader(0, null, this);
     }
 }
 

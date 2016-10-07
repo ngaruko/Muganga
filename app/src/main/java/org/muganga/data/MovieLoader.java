@@ -8,7 +8,9 @@ import android.net.Uri;
 
 public class MovieLoader extends CursorLoader {
     private MovieLoader(Context context, Uri uri) {
+        //super(context, uri, Query.PROJECTION, null, null, MoviesContract.InTheater.getSortString());
         super(context, uri, Query.PROJECTION, MoviesContract.InTheater.getFilterString(), null, MoviesContract.InTheater.getSortString());
+
     }
 
 

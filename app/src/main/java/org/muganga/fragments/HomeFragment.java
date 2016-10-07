@@ -16,6 +16,7 @@ import com.google.android.gms.common.SignInButton;
 
 import org.muganga.Logs.Logger;
 import org.muganga.R;
+import org.muganga.activities.BluetoothActivity;
 import org.muganga.activities.FirebaseActivity;
 import org.muganga.activities.LocationsActivity;
 import org.muganga.activities.MapsActivity;
@@ -70,7 +71,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_home, container, false);
 
-
+//search invisible
+        //new MainActivity().mSearchItem.setVisible(false);
 //Auth
         mSignInButton = (SignInButton) layout.findViewById(R.id.sign_in_button);
         mSignOutButton = (Button) layout.findViewById(R.id.sign_out_button);
@@ -117,6 +119,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         super.onStart();
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
+    }
+
 
     @Override
     public void onStop() {
@@ -221,7 +231,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     break;
                 case R.id.sign_out_button:
 
-
+                    Intent i = new Intent(getContext(), BluetoothActivity.class);
+                    startActivity(i);
                     break;
                 case R.id.revoke_access_button:
 

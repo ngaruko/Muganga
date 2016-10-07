@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "520880316028",
+    "firebase_url": "https://muganga-android.firebaseio.com",
+    "project_id": "muganga-android",
+    "storage_bucket": "muganga-android.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520880316028:android:4dec603ef3a8892c",
+        "android_client_info": {
+          "package_name": "org.muganga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520880316028-n49cic4prcva5t793atst4b3gotn8d18.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6p0jCCZ_yCam-ydXl8kSQvBqnFRm42lI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

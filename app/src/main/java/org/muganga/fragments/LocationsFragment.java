@@ -2,22 +2,22 @@ package org.muganga.fragments;
 
 
 import android.app.LoaderManager;
-import android.content.Intent;
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.muganga.Logs.Logger;
+import org.muganga.MainApplication;
 import org.muganga.R;
 import org.muganga.adapters.AdapterEntities;
 import org.muganga.data.MovieLoader;
-import org.muganga.services.MoviesService;
 import org.muganga.utilities.MovieSorter;
 import org.muganga.utilities.SortListener;
 
@@ -39,6 +39,8 @@ public class LocationsFragment extends Fragment implements LoaderManager.LoaderC
     private static final String TAG_SORT_RATING = "sortRating";
 
     private RecyclerView mRecyclerView;
+    private AdapterEntities mAdapter;
+    private Context mContext;
 
     public LocationsFragment() {
         // Required empty public constructor
@@ -56,7 +58,7 @@ public class LocationsFragment extends Fragment implements LoaderManager.LoaderC
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+mContext= MainApplication.getAppContext();
 
         getActivity().getLoaderManager().initLoader(1, null, this);
 
@@ -73,7 +75,7 @@ public class LocationsFragment extends Fragment implements LoaderManager.LoaderC
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
+        MovieSorter.Filter.setFilterString("");
         View view= inflater.inflate(R.layout.fragment_top_movies, container, false);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.top_movies_recyclerView);
@@ -84,7 +86,7 @@ public class LocationsFragment extends Fragment implements LoaderManager.LoaderC
 
     @Override
     public android.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return MovieLoader.newAllTopMoviesInstance(getActivity());
+        return MovieLoader.newAllTopMoviesInstance(mContext);
         //  return null;
     }
 
@@ -92,19 +94,26 @@ public class LocationsFragment extends Fragment implements LoaderManager.LoaderC
     public void onLoadFinished(android.content.Loader<Cursor> loader, Cursor cursor) {
 
         if (isAdded()) {
-            Log.d("Loading....", "Top movies!");
-            AdapterEntities adapter = new AdapterEntities(cursor, getActivity());
-            adapter.setHasStableIds(true);
-            try {
-                mRecyclerView.setAdapter(adapter);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
             int columnCount = getResources().getInteger(R.integer.list_column_count);
 
             StaggeredGridLayoutManager sglm2 =
                     new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
+            
             mRecyclerView.setLayoutManager(sglm2);
+
+
+             mAdapter = new AdapterEntities(cursor, getActivity());
+            mAdapter.setHasStableIds(true);
+            try {
+                mRecyclerView.setAdapter(mAdapter);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }else {
+
+            Logger.error("Not added the thing");
+
         }
     }
 
@@ -160,13 +169,14 @@ public class LocationsFragment extends Fragment implements LoaderManager.LoaderC
     public void onFilter(String filterText) {
 
         MovieSorter.Filter.setFilterString(filterText);
-        getActivity().getLoaderManager().restartLoader(3,null,this);
+        getActivity().getLoaderManager().restartLoader(1,null,this);
+        //MovieSorter.Filter.setFilterString("");
 
 
     }
 
     private void refresh() {
-        getActivity().startService(new Intent(getActivity(), MoviesService.class));
+        //getActivity().startService(new Intent(getActivity(), MoviesService.class));
         getActivity().getLoaderManager().restartLoader(1, null, this);
     }
 }

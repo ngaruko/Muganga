@@ -125,7 +125,7 @@ public class AdapterDiseases extends RecyclerView.Adapter<AdapterDiseases.ViewHo
 
         // holder.type.setText(mCursor.getString(MovieLoader.Query.COLUMN_RELEASE_DATE));
         holder.movieReleaseDate.setText(mCursor.getString(MovieLoader.Query.COLUMN_GENRES));
-        Double rating = mCursor.getDouble(MovieLoader.Query.COLUMN_RATING);
+        //Double rating = mCursor.getDouble(MovieLoader.Query.COLUMN_RATING);
 
 
        // holder.movieThumbnail.setImageResource(R.drawable.google_plus);

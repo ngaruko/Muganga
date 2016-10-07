@@ -100,9 +100,10 @@ public class MoviesContract {
         }
 
 
-        public static String getFilterString() {
+        
+public static String getFilterString() {
             filterString= MovieSorter.Filter.getFilterString();
-            return COLUMN_TITLE + " " + "like" + " " + "'%"+ filterString + "%" +"'";
+            return COLUMN_TITLE + " " + "like" + " " + "'%"+ filterString + "%" +"'" + " OR " + COLUMN_GENRES + " " + "like" + " " + "'%"+ filterString + "%" +"'";
         }
     }
 
